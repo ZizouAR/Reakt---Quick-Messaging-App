@@ -8,6 +8,7 @@ import { useGlobal, setGlobal } from 'reactn';
 
 // Components
 import NewMessage from './src/components/buttons/NewMessage';
+import BottomNavigator from './src/components/navigator/BottomNavigator';
 
 // Screens
 import RecentMessagesListScreen from './src/screens/RecentMessagesListScreen';
@@ -64,12 +65,13 @@ export default function App() {
         <StatusBar barStyle={scheme === "dark" ? 'light-content' : "dark-content"}/>
         <AppearanceProvider>
           <NavigationContainer theme={scheme === "dark" ? iOSDarkTheme : iOSLightTheme}>
-            <Stack.Navigator initialRouteName="Groups">
+            <Stack.Navigator initialRouteName="BottomNavigator">
               <Stack.Screen name="RecentMessagesListScreen" component={RecentMessagesListScreen} options={{
                 title: 'Messages'
               }}/>
               <Stack.Screen name="Message" component={MessageScreen}/>
               <Stack.Screen name="Groups" component={Groups}/>
+              <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{ headerShown: false }}/>
             </Stack.Navigator>
           </NavigationContainer>
         </AppearanceProvider>

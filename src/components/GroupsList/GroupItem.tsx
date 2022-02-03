@@ -17,7 +17,7 @@ export default class GroupItem extends Component {
             <Card style={styles.card} onPress={this.onPress}>
                 <View style={styles.cardView}>
                     <View style={styles.nameView}>
-                    <Icon reverse name='group' type='font-awesome'/>
+                    <Icon reverse name='group' type='font-awesome' color='#006AFF'/>
                         <Text style={styles.nameText}>{item.name}</Text>
                         <Text style={styles.last}>
                             Active {item.last_active}
