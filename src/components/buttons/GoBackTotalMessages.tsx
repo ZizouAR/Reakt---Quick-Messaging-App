@@ -8,7 +8,7 @@ const GoBackTotalMessages = ({ total, navigation }:Props) => {
     const theme = useTheme();
 
     return (
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('RecentMessagesListScreen')}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('BottomNavigator')}>
             <View style={styles.container}>
                 <Icon name="left" size={24} color={theme.colors.primary} />
                 <View style={[styles.totalWrapper, { backgroundColor: theme.colors.primary }]}>

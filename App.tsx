@@ -66,9 +66,6 @@ export default function App() {
         <AppearanceProvider>
           <NavigationContainer theme={scheme === "dark" ? iOSDarkTheme : iOSLightTheme}>
             <Stack.Navigator initialRouteName="BottomNavigator">
-              <Stack.Screen name="RecentMessagesListScreen" component={RecentMessagesListScreen} options={{
-                title: 'Messages'
-              }}/>
               <Stack.Screen name="Message" component={MessageScreen}/>
               <Stack.Screen name="Groups" component={Groups}/>
               <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{ headerShown: false }}/>
