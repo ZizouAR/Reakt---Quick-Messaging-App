@@ -11,9 +11,8 @@ import NewMessage from './src/components/buttons/NewMessage';
 import BottomNavigator from './src/components/navigator/BottomNavigator';
 
 // Screens
-import RecentMessagesListScreen from './src/screens/RecentMessagesListScreen';
-import MessageScreen from './src/screens/MessageScreen';
-import Groups from './src/screens/GroupsScreen/index';
+import Groups from './src/screens/GroupsScreen';
+import ConversationScreen from './src/screens/ConversationScreen';
 
 // Data
 import defaultContacts from './src/data/contacts.json';
@@ -66,7 +65,7 @@ export default function App() {
         <AppearanceProvider>
           <NavigationContainer theme={scheme === "dark" ? iOSDarkTheme : iOSLightTheme}>
             <Stack.Navigator initialRouteName="BottomNavigator">
-              <Stack.Screen name="Message" component={MessageScreen}/>
+              <Stack.Screen name="Message" component={ConversationScreen} options={{ headerShown: false }}/>
               <Stack.Screen name="Groups" component={Groups}/>
               <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{ headerShown: false }}/>
             </Stack.Navigator>

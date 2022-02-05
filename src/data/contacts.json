@@ -46,6 +46,46 @@
                 "receiver": 1,
                 "time": 1607586046417,
                 "read": true
+            },
+            {
+                "id": 1,
+                "message": "SKOJAR DU? Vad fräckt! Asså ändå, även om det bara är en intership. Grattis!",
+                "sender": 1,
+                "receiver": 0,
+                "time": 1607672427258,
+                "read": true
+            },
+            {
+                "id": 1,
+                "message": "Eller ja, tekniskt sätt är det faktiskt en 'internship' haha.",
+                "sender": 0,
+                "receiver": 1,
+                "time": 1607671280544,
+                "read": true
+            },
+            {
+                "id": 1,
+                "message": "Jag jobbar som programmerare inom AI, det är riktigt coolt. Har fått jobb på Nvidia!",
+                "sender": 0,
+                "receiver": 1,
+                "time": 1607671213734,
+                "read": true
+            },
+            {
+                "id": 1,
+                "message": "Men hej på dig! Kul att du skriver, det är bara fint med mig. Hur är det med dig? Vad gör du nu för tiden?",
+                "sender": 1,
+                "receiver": 0,
+                "time": 1607589653329,
+                "read": true
+            },
+            {
+                "id": 1,
+                "message": "Tjenare Marcus, det var länge sen!",
+                "sender": 0,
+                "receiver": 1,
+                "time": 1607586046417,
+                "read": true
             }
         ]
     },
@@ -57,6 +97,30 @@
         "image": false,
         "gender": "male",
         "messages": [
+            {
+                "id": 2,
+                "message": "Verkligen, köpte du några?",
+                "sender": 2,
+                "receiver": 0,
+                "time": 1607670386917,
+                "read": true
+            },
+            {
+                "id": 2,
+                "message": "Ah haha, sjukt att de har gått upp så mycket!",
+                "sender": 0,
+                "receiver": 2,
+                "time": 1607666777289,
+                "read": true
+            },
+            {
+                "id": 2,
+                "message": "Såg du SAS aktierna eller?",
+                "sender": 2,
+                "receiver": 0,
+                "time": 1607664970598,
+                "read": true
+            },
             {
                 "id": 2,
                 "message": "Verkligen, köpte du några?",
