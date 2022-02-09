@@ -35,8 +35,8 @@ export default class MessageSent extends React.Component {
 				<Text style={styles.timestampText}>FRI 11:01</Text> : null}
 				<View 
 				navigation={this.props.navigation}
-				style={{backgroundColor: '#0084FF', alignSelf: 'flex-end', padding: 10, borderRadius: 20, marginRight: 62.8*w, marginBottom: 2.2*h, maxWidth: 94.2*w }}>
-		        <Text style={{color: 'white'}}>Sample text here</Text>
+				style={{backgroundColor: '#E0F0FF', alignSelf: 'flex-end', padding: 10, borderRadius: 10, marginRight: 62.8*w, marginBottom: 2.2*h, maxWidth: 94.2*w }}>
+		        <Text style={{color: 'black'}}>Sample text here</Text>
 	            </View>
 				</View>
 			</TouchableWithoutFeedback>

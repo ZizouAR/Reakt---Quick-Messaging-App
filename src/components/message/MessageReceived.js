@@ -182,7 +182,7 @@ bubbleText: {
 	backgroundColor: '#f1f0f0', 
 	alignSelf: 'flex-start', 
 	padding: 10, 
-	borderRadius: 20, 
+	borderRadius: 10, 
 	maxWidth: 87*w,
 	marginBottom: 2.2*h
 },

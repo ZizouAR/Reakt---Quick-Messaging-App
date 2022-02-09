@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { Linking, Alert, FlatList, Image, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard, LayoutAnimation, Platform} from "react-native"
 import {h, w} from "../config/dimensions";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Modal from '../components/modal/Modal';
 import ProfileImage from '../components/image/ProfileImage';
@@ -20,13 +21,13 @@ import ActionButton from '../components/buttons/ActionButton';
 const Conversation = ({ navigation, route }: Props) => {
 
 	const [text, setText] = useState('');
-	const [inputWidth, setInputWidth] = useState(38.64*w);
+	const [inputWidth, setInputWidth] = useState(62*w);
     const [modalOpen, setModalOpen] = useState(false);
     const [contact, setContacat] = useState(route.params.contact);
 
 
 	const onArrowBackPress = () => {
-		navigation.navigate('BottomNavigator')
+		navigation.navigate('Home')
 	}
 
 	const onAvatarPress = () => {
@@ -68,7 +69,7 @@ const Conversation = ({ navigation, route }: Props) => {
 	const onArrowNextPress = () => {
 		LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 		setText('');
-		setInputWidth(38.6*w);
+		setInputWidth(62*w);
 		Keyboard.dismiss();
 	}
 
@@ -128,7 +129,7 @@ const Conversation = ({ navigation, route }: Props) => {
 						left: 0,
 						right: -15.45*w,
 						top: 0,
-						bottom: -1.22*h,
+						bottom: -1.22*h
 					}}>
 					<View
 						style={styles.conversationChatHeaderView}>
@@ -136,7 +137,7 @@ const Conversation = ({ navigation, route }: Props) => {
 							pointerEvents="box-none"
 							style={{
 								width: 76.3*w,
-								height: 14*h,
+								height: 14*h							
 							}}>
 								
 							<View
@@ -146,7 +147,7 @@ const Conversation = ({ navigation, route }: Props) => {
 									left: 0,
 									top: 0,
 									bottom: 0,
-									justifyContent: "center",
+									justifyContent: "center"
 								}}>
 									<TouchableOpacity onPress={() => setModalOpen(true)}>
 									<View
@@ -160,15 +161,15 @@ const Conversation = ({ navigation, route }: Props) => {
 												source={require("../../assets/images/-avatar.png")}
 												style={styles.avatarImage}/>
 										</TouchableOpacity>
-										<Image
-											source={require("../../assets/images/-available.png")}
-											style={styles.availableImage}/>
 									</View>
-									
 									<View
 										style={styles.userInformationView}>
-										<Text
+										<View 
+										style={styles.statusView}>
+											<Ionicons name="alert-circle-sharp"  size={10} color="#50ebaa" style={styles.availableImage}/>
+											<Text
 											style={styles.statusText}>Active now</Text>
+											</View>
 										<Text
 											style={styles.usernameText}>Abdelhamid Larachi</Text>
 									</View>
@@ -189,9 +190,7 @@ const Conversation = ({ navigation, route }: Props) => {
 									
 								<TouchableOpacity
 								onPress={onArrowBackPress}>
-									<Image
-									source={require("../../assets/images/arrow-back.png")}
-									style={styles.arrowBackImage}/>
+									<Ionicons name="chevron-back"  size={20} color="#ABAFB2" style={styles.arrowBackImage}/>
 								</TouchableOpacity>
 							</View>
 						</View>
@@ -201,17 +200,17 @@ const Conversation = ({ navigation, route }: Props) => {
 								pointerEvents="box-none"
 								style={{
 									flex: 1,
-									height: 2.6*h,
+									height: 3.6*h,
 									marginLeft: 2.4*w,
-									marginRight: 7.2*w,
+									marginRight: 10.2*w,
 									marginTop: 1.1*h,
+
 								}}>
 								<TouchableOpacity
 									onPress={onPhonePress}
 									style={styles.phoneCall}>
-									<Image
-											source={require("../../assets/images/phone-icon.png")}
-											style={styles.phoneIconImage}/>
+								<Ionicons name="call"  size={20} color="#ABAFB2" style={styles.phoneIconImage}/>
+
 								</TouchableOpacity>
 							</View>
 							<View
@@ -226,9 +225,7 @@ const Conversation = ({ navigation, route }: Props) => {
 								<TouchableOpacity
 									onPress={onVideoCallPress}
 									style={styles.videoCall}>
-									<Image
-											source={require("../../assets/images/videochat-icon.png")}
-											style={styles.videochatIconImage}/>
+										<Ionicons name="videocam"  size={25} color="#ABAFB2" style={styles.videochatIconImage}/>
 								</TouchableOpacity>
 							</View>
 						</View>
@@ -238,58 +235,24 @@ const Conversation = ({ navigation, route }: Props) => {
 						style={styles.conversationInputDefaultView}>
 						<View
 							style={styles.moreView}>
-						{ text == '' ? 
+						
 							<TouchableOpacity
 								onPress={onMorePress}
 								style={styles.moreButton}>
-							<Image
-								source={require("../../assets/images/more.png")}
-								style={styles.moreImage}/>
+							<MaterialCommunityIcons name="plus-circle-outline"  size={25} color="#ABAFB2" style={styles.moreImage}/>
 							</TouchableOpacity>
-							:
-							<TouchableOpacity
-								onPress={onArrowNextPress}
-								style={styles.arrowNextButton}>
-							<Image
-								source={require("../../assets/images/arrow-next.png")}
-								style={styles.arrowNextImage}/>
-							</TouchableOpacity>
-	                      }
-						</View>
-						<View
-							style={styles.cameraView}>
-							<TouchableOpacity
-								onPress={onCameraPress}
-								style={styles.cameraButton}>
-								<Image
-								source={require("../../assets/images/camera-2.png")}
-								style={styles.cameraImage}/>
-							</TouchableOpacity>
-						</View>
-						<View
-							style={styles.photoView}>
-							<TouchableOpacity
-								onPress={onPhotoPress}
-								style={styles.photoButton}>
-								<Image
-								source={require("../../assets/images/photo-2.png")}
-								style={styles.photoImage}/>
-							</TouchableOpacity>
+	                      
 						</View>
 						<View
 							style={styles.microView}>
 							<TouchableOpacity
 								onPress={onMicroPress}
 								style={styles.microButton}>
-								<Image
-								source={require("../../assets/images/microphone.png")}
-								style={styles.microphoneImage}/>
+							<MaterialCommunityIcons name="microphone"  size={23} color="#ABAFB2" style={styles.microphoneImage}/>
 							</TouchableOpacity>
 						</View>
 						<View style={styles.msgInputView}>
-						<Image
-								source={require("../../assets/images/emoji-2.png")}
-								style={styles.smileyIcon}/>						
+						<MaterialCommunityIcons name="face"  size={19} color="#ABAFB2" style={styles.smileyIcon}/>				
 					<TextInput 
 					style={{		
 					backgroundColor: '#f1f0f0',
@@ -312,20 +275,11 @@ const Conversation = ({ navigation, route }: Props) => {
 							}}/>
 						<View
 							style={styles.likeView}>
-						{ text == '' ? 
-						<TouchableOpacity
-								onPress={onLikeButtonPress}
-								style={styles.LikeButton}>
-								<Image
-								source={require("../../assets/images/assets-icons-32-like.png")}
-								style={styles.likeImage}/>
-						</TouchableOpacity> : 
 						<TouchableOpacity
 								onPress={onInputChange}
 								style={styles.LikeButton}>
-								<Ionicons name="md-send"  size={25} color="#0084FF" />
+								<Ionicons name="md-send"  size={25} color="#ABAFB2" />
 						</TouchableOpacity>
-	}
 						</View>
 					</View>
 					{Platform.OS === 'ios' ? <KeyboardSpacer/> : null}		
@@ -366,14 +320,16 @@ const styles = StyleSheet.create({
 		height: '95%',
 	},
 	conversationChatHeaderView: {
-		backgroundColor: "white",
+		backgroundColor: "#E8E9EC",
 		shadowColor: "rgba(0, 0, 0, 0.16)",
 		shadowRadius: 6,
 		shadowOpacity: 1,
-		height: Platform.OS === 'ios' ? 12.3*h : 8*h,
-		marginRight: 14*w,
+		height: Platform.OS === 'ios' ? 20.3*h : 16*h,
+		marginRight: 15*w,
 		flexDirection: "row",
 		alignItems: "center",
+		borderRadius: 30
+
 	},
 	inputWrapper: {
 		position: 'absolute',
@@ -387,12 +343,13 @@ const styles = StyleSheet.create({
 		marginLeft: 12.1*w,
 		flexDirection: "row",
 		alignItems: "center",
-		marginTop: 4.5*h
+		marginTop: "25%"
 	},
 	avatarView: {
 		backgroundColor: "transparent",
 		width: 15.9*w,
 		height: 12.3*h,
+		marginBottom: "10%"
 	},
 	avatarImage: {
 		resizeMode: "stretch",
@@ -405,25 +362,20 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
-		padding: 0,
 		position: "absolute",
-		left: 3.1*w,
-		right: 0.2*w,
-		top: 3.1*h,
-		height: 5.8*h,
+		left: 32.1*w,
+		height: 5.8*h
 	},
 	availableImage: {
-		resizeMode: "stretch",
 		backgroundColor: "transparent",
-		position: "absolute",
-		right: 0.2*w,
 		width: 3.9*w,
-		bottom: 2.8*h,
 		height: 1.8*h,
+		top: 2*h,
+		right: 5*w
 	},
 	userInformationView: {
 		backgroundColor: "transparent",
-		alignSelf: "flex-start",
+		alignSelf: "flex-end",
 		width: 51.4*w,
 		height: 8.6*h,
 		marginLeft: 1.7*w,
@@ -436,11 +388,15 @@ const styles = StyleSheet.create({
 		fontSize: 1.6*h,
 		fontStyle: "normal",
 		fontWeight: "normal",
-		textAlign: "left",
+		textAlign: "center",
+		backgroundColor: "transparent",
+	},
+	statusView: {
 		backgroundColor: "transparent",
 		position: "absolute",
-		left: 0.5*w,
 		bottom: 2.3*h,
+		alignSelf: "center",
+		left: 14*w
 	},
 	usernameText: {
 		color: "black",
@@ -477,19 +433,12 @@ const styles = StyleSheet.create({
 		resizeMode: "stretch",
 		backgroundColor: "transparent",
 		width: 4.6*w,
-		height: 2.1*h,
 	},
 	phoneCall: {
 		backgroundColor: "transparent",
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
-		padding: 0,
-		position: "absolute",
-		left: 0,
-		right: 0,
-		top: 0.3*h,
-		height: 2.3*h,
 	},
 	videochatIconImage: {
 		resizeMode: "stretch",
@@ -517,7 +466,7 @@ const styles = StyleSheet.create({
 		fontWeight: "normal",
 		textAlign: "center",
 		backgroundColor: "transparent",
-		alignSelf: "flex-end",
+		alignSelf: "center",
 		marginRight: 114.5*w,
 		marginTop: 21.1*h,
 	},
@@ -541,10 +490,7 @@ const styles = StyleSheet.create({
 		resizeMode: "stretch",
 		backgroundColor: "transparent",
 		position: "absolute",
-		left: 0,
-		width: 6.3*w,
-		top: 2.2*h,
-		height: 2.9*h,
+		top: 2.2*h
 	},
 	arrowNextImage: {
 		resizeMode: "stretch",
@@ -663,10 +609,7 @@ const styles = StyleSheet.create({
 		backgroundColor: "transparent",
 		resizeMode: "stretch",
 		position: "absolute",
-		left: 0,
-		width: 4.3*w,
-		top: 2.2*h,
-		height: 3*h,
+		top: 2.6*h
 	},
 	microButton: {
 		backgroundColor: "transparent",
