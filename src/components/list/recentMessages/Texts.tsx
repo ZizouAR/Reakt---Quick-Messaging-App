@@ -18,18 +18,13 @@ const Texts = ({ isEditing, time, message, name }:Props) => {
                 <Text 
                     numberOfLines={1}
                     style={{
-                        fontSize: 16,
-                        fontWeight: '500'
+                        fontSize: 14,
+                        fontWeight: "bold"
                 }}>{name}</Text>
 
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <Text numberOfLines={1} style={{ color: theme.colors.text2 }} >{timestampToDate(time)}</Text>
-                    <Icon
-                        name="right"
-                        size={16}
-                        color={theme.colors.text2}
-                        style={{ marginLeft: 4 }}
-                    />
+                <View style={{ flexDirection: "row", alignItems: "center", marginRight: "5%" }}>
+                    <Text numberOfLines={1} style={{ color: theme.colors.text2, fontSize: 12 }} >{timestampToDate(time)}</Text>
+                   
                 </View>
             </View>
             <Text numberOfLines={2} style={[styles.message, { color: theme.colors.text2, width: Dimensions.get('screen').width - (isEditing ? 105 : 60) - (isEditing ? 24 : 32) }]}>{message}</Text>
@@ -50,6 +45,7 @@ const styles = StyleSheet.create({
         paddingTop: 2,
         lineHeight: 20,
         maxHeight: 50,
+        fontSize: 13
     }
 });
 

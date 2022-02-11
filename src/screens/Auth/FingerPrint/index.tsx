@@ -14,12 +14,12 @@ import { LinearGradient } from "expo-linear-gradient"
 
 export default function FingerPrint({ navigation, route }: Props) {
 
-	const onComponent19Pressed = () => {
+	const Continue = () => {
 		navigation.navigate('Welcome')
 	}
 
-	const onGroup50Pressed = () => {
-	
+	const SkipThisStep = () => {
+		navigation.navigate('Home')
 	}
 
 	return <LinearGradient
@@ -115,13 +115,13 @@ export default function FingerPrint({ navigation, route }: Props) {
 							flex: 1,
 						}}/>
 					<TouchableOpacity
-						onPress={onComponent19Pressed}
+						onPress={Continue}
 						style={styles.component19Button}>
 						<Text
 							style={styles.component19ButtonText}>continue</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
-						onPress={onGroup50Pressed}
+						onPress={SkipThisStep}
 						style={styles.group50Button}>
 						<Image
 							source={require("./../../../../assets/images/arrow-forward.png")}

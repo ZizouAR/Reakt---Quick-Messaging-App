@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF",
         alignItems: "center",
         paddingRight: 16,
-        paddingLeft: 16
+        paddingLeft: 16,
     }
 });
 

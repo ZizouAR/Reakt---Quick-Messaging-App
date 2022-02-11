@@ -41,7 +41,7 @@ const RecentMessagesListItem = ({ data, isEditing, selectedItems, messages, setM
             overshootFriction={8}
         >
             <TouchableWithoutFeedback onPress={handlePress}>
-                <View style={{ flexDirection: "row", paddingLeft: 16, paddingRight: 16, backgroundColor: theme.colors.card, zIndex: 2 }}>
+                <View style={{ flexDirection: "row", paddingLeft: 15, backgroundColor: theme.colors.card, zIndex: 2 , borderRadius: 20, marginTop: "2%", marginHorizontal:"3%"}}>
                     <ReadIcon isEditing={isEditing} hasRead={hasRead}/>
                     <SelectIcon isEditing={isEditing} isSelected={isSelected}/>
                     <ContactInfo isEditing={isEditing} data={data}/>

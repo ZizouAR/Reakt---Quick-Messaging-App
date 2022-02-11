@@ -9,6 +9,7 @@ import RecentMessagesListScreen from '../../screens/RecentMessagesListScreen';
 import Settings from '../../screens/SettingsScreen';
 import Contacts from '../../screens/ContactsScreen';
 import Scan from '../../screens/Scan';
+import Feed from '../../screens/Feed';
 
 const Tab = createBottomTabNavigator();
 
@@ -60,6 +61,7 @@ export default function BottomNavigator() {
                 />
               );
             }
+
           },
           tabBarInactiveTintColor: 'gray',
           tabBarActiveTintColor: '#006AFF',

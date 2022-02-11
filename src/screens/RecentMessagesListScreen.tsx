@@ -4,8 +4,10 @@ import { useTheme } from '@react-navigation/native';
 
 // Components
 import SearchBarSmall from '../components/search/SearchBarSmall';
+import Tabs from '../components/navigator/Tabs';
 import RecentMessagesList from '../components/list/RecentMessagesList';
 import NewMessage from '../components/buttons/NewMessage';
+import FloatingButton from '../components/buttons/FloatingButton';
 import { useGlobal } from 'reactn';
 
 // Components
@@ -28,6 +30,14 @@ const MessagesListScreen = ({ navigation }:any) => {
     // Allow edit button in header to change state
     useLayoutEffect(() => {
         navigation.setOptions({
+            headerStyle: {
+                //backgroundColor: '#007AFF',
+                //height: 170,
+                //borderRadius: 30
+              },
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              }, 
             headerLeft: () => ( // EDIT BUTTON
                 messages.length > 0 ? <View style={{ marginLeft: 8 }}><Button title={isEditing ? "Cancel" : "Edit"} onPress={() => setIsEditing(isEditing ? false : true)}/></View> : null
             ), // NEW MESSAGE BUTTON
@@ -36,8 +46,10 @@ const MessagesListScreen = ({ navigation }:any) => {
     }, [navigation, isEditing, messages]);
 
     return (
-        <ScrollView style={{ backgroundColor: theme.colors.card }}>
-            <SearchBarSmall value={value} setValue={setValue}/>
+        <View>
+        <ScrollView style={{ backgroundColor: "#F4F4F4", height: "100%" }}>
+
+            <Tabs navigation={navigation}/>
 
             <RecentMessagesList
                 isEditing={isEditing}
@@ -48,6 +60,10 @@ const MessagesListScreen = ({ navigation }:any) => {
                 navigation={navigation}
             />
         </ScrollView>
+        <FloatingButton/>
+
+        </View>
+
     )
 }
 

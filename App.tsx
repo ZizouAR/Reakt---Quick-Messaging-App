@@ -5,6 +5,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme, useTheme } from '@react-n
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { createStackNavigator } from '@react-navigation/stack'; const Stack = createStackNavigator();
 import { useGlobal, setGlobal } from 'reactn';
+import { LogBox } from 'react-native';
 
 // Components
 import NewMessage from './src/components/buttons/NewMessage';
@@ -18,6 +19,7 @@ import FingerPrint from './src/screens/Auth/FingerPrint'
 import PhoneNumber from './src/screens/Auth/PhoneNumber'
 import SMSVerification from './src/screens/Auth/SMSVerification'
 import Welcome from './src/screens/Auth/Welcome'
+import Feed from './src/screens/Feed'
 
 
 // Data
@@ -37,6 +39,10 @@ export default function App() {
 
     setLoaded(true)
   }, [])
+
+
+//LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notification
 
   const iOSLightTheme = {
     ...DefaultTheme,
@@ -75,6 +81,7 @@ export default function App() {
               <Stack.Screen name="Message" component={ConversationScreen} options={{ headerShown: false }}/>
               <Stack.Screen name="Groups" component={Groups}/>
               <Stack.Screen name="Home" component={BottomNavigator} options={{ headerShown: false }}/>
+              <Stack.Screen name="Feed" component={Feed}/>
               {/* Logged-out stack */}
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
               <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }}/>

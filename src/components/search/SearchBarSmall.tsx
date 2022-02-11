@@ -6,12 +6,12 @@ const SearchBarSmall = ({ value, setValue }:Props) => {
     const theme = useTheme();
 
     return (
-        <View style={{ paddingLeft: 16, paddingRight: 16 }}>
+        <View style={{ paddingLeft: 16, paddingRight: 16, backgroundColor: theme.colors.background, marginBottom: "4%", marginTop:"4%" }}>
             <TextInput
                 onChangeText={text => setValue(text)}
                 value={value}
                 placeholder="Search"
-                style={{ padding: 8, borderRadius: 8, backgroundColor: theme.colors.background, marginBottom: 16, marginTop: 8, fontSize: 16 }}
+                style={{ padding: 8, borderRadius: 8, backgroundColor: "white", marginBottom: "4%", marginTop: 8, fontSize: 16 }}
                 />
         </View>
     )
