@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, Button, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 // Components
-import SearchBarSmall from '../components/search/SearchBarSmall';
 import Tabs from '../components/navigator/Tabs';
 import RecentMessagesList from '../components/list/RecentMessagesList';
 import NewMessage from '../components/buttons/NewMessage';
-import FloatingButton from '../components/buttons/FloatingButton';
+import CreateRequestModal from '../components/modal/CreateRequestModal';
+import SegmentedControl from '../components/buttons/SegmentedControl';
 import { useGlobal } from 'reactn';
 
 // Components
@@ -31,13 +31,19 @@ const MessagesListScreen = ({ navigation }:any) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerStyle: {
-                //backgroundColor: '#007AFF',
+                backgroundColor: "#F4F4F4",
+                shadowColor: 'transparent'
                 //height: 170,
                 //borderRadius: 30
               },
               headerTitleStyle: {
                 fontWeight: 'bold',
               }, 
+            
+            headerTitle: () => (<View style={{ width: 130, alignSelf: "center"}}>
+              <SegmentedControl/>
+              </View>),
+
             headerLeft: () => ( // EDIT BUTTON
                 messages.length > 0 ? <View style={{ marginLeft: 8 }}><Button title={isEditing ? "Cancel" : "Edit"} onPress={() => setIsEditing(isEditing ? false : true)}/></View> : null
             ), // NEW MESSAGE BUTTON
@@ -48,9 +54,9 @@ const MessagesListScreen = ({ navigation }:any) => {
     return (
         <View>
         <ScrollView style={{ backgroundColor: "#F4F4F4", height: "100%" }}>
-
+        
             <Tabs navigation={navigation}/>
-
+            
             <RecentMessagesList
                 isEditing={isEditing}
                 selectedItems={selectedItems}
@@ -60,7 +66,7 @@ const MessagesListScreen = ({ navigation }:any) => {
                 navigation={navigation}
             />
         </ScrollView>
-        <FloatingButton/>
+        <CreateRequestModal/>
 
         </View>
 

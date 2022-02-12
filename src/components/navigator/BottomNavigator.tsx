@@ -2,6 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { Text, View } from 'react-native';
 
 // Screens
 import Groups from '../../screens/GroupsScreen';
@@ -10,6 +11,7 @@ import Settings from '../../screens/SettingsScreen';
 import Contacts from '../../screens/ContactsScreen';
 import Scan from '../../screens/Scan';
 import Feed from '../../screens/Feed';
+import SegmentedControl from '../../components/buttons/SegmentedControl';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +30,7 @@ export default function BottomNavigator() {
                   }
                   size={size}
                   color={color}
+                  
                 />
               );
 
@@ -63,14 +66,33 @@ export default function BottomNavigator() {
             }
 
           },
-          tabBarInactiveTintColor: 'gray',
-          tabBarActiveTintColor: '#006AFF',
+          tabBarInactiveTintColor: 'black',
+          tabBarActiveTintColor: '#3366FF',
+          tabBarLabel: ({ focused }) => {
+            let label;
+            return label = focused ? <Text style={{fontSize: 10, color: "#3366FF"}}>{route.name}</Text> : null
+          },
+
+
+          tabBarStyle: {
+            bottom: 25, 
+            marginLeft: 20, 
+            marginRight: 20,
+            elevation: 0,
+            borderRadius: 15,
+            height: 90,
+            padding: 20,
+            backgroundColor: "#D6DEF8"
+          }
         })}
       >
+        {/*<SegmentedControl/>*/}
         <Tab.Screen
           name="Chat"
           component={RecentMessagesListScreen}
-          options={{ tabBarBadge: 3 }}
+          options={{ tabBarBadge: 3}}
+          
+
         />
         <Tab.Screen name="Groups" component={Groups} />
         <Tab.Screen name="Contacts" component={Contacts} />

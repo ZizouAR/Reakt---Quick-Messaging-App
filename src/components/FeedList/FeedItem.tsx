@@ -24,6 +24,7 @@ export default class FeedItem extends Component {
                         <Text style={styles.members}>
                         {item.last_active}
                         </Text>
+                        
                     <View style={styles.footerItems}>
                         <Text style={styles.actions}>
                         {item.last_active}

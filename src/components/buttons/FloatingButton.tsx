@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Dimensions } from 'react-native';
 import { FAB } from 'react-native-paper';
-import Modal from '../../components/modal/Modal';
-import InputAutoCompleteChips from '../../components/Inputs/InputAutoCompleteChips';
+import Modal from '../modal/Modal';
+import InputAutoCompleteChips from '../Inputs/InputAutoCompleteChips';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { useKeyboard } from '@react-native-community/hooks'
 import {h, w} from '../../config/dimensions'
 
@@ -43,6 +42,7 @@ export default function FloatingButton() {
     small
     animated
     icon="pencil"
+    color="#006AFF"
     onPress={() => setModalOpen(true)}
       />
       
@@ -81,19 +81,19 @@ export default function FloatingButton() {
 
 <View style={[styles.icons, { bottom: keyboard.keyboardHeight + 14.77*h }]}>
 
-<TouchableOpacity style={styles.icon} onPress={() => setVoice(true)}>
+<TouchableOpacity style={styles.icon} onPress={() => setVoice()}>
   	<MaterialCommunityIcons name="microphone"  size={23} color="#ABAFB2"/>
 </TouchableOpacity>
-<TouchableOpacity style={styles.icon} onPress={() => setAttach(true)}>
+<TouchableOpacity style={styles.icon} onPress={() => setAttach()}>
   	<Ionicons name="attach"  size={23} color="#ABAFB2"/>
 </TouchableOpacity>
-<TouchableOpacity style={styles.icon} onPress={() => setCalendar(true)}>
+<TouchableOpacity style={styles.icon} onPress={() => setCalendar()}>
   	<Ionicons name="calendar"  size={23} color="#ABAFB2"/>
 </TouchableOpacity>
-<TouchableOpacity style={styles.icon} onPress={() => setPencil(true)}>
+<TouchableOpacity style={styles.icon} onPress={() => setPencil()}>
   	<MaterialCommunityIcons name="format-font"  size={23} color="#ABAFB2"/>
 </TouchableOpacity>
-<TouchableOpacity style={styles.send} onPress={() => send(true)}>
+<TouchableOpacity style={styles.send} onPress={() => send()}>
   <Ionicons name="md-send"  size={23} color="#007aff" />
 </TouchableOpacity>
 </View>
@@ -105,11 +105,12 @@ export default function FloatingButton() {
 
 const styles = StyleSheet.create({
   fab: {
-    backgroundColor: "#007aff",
+    backgroundColor: "#D6DEF8",
+    color: "black",
     position: 'absolute',
     margin: 30,
     right: 0,
-    bottom: 0,
+    bottom: 30,
   },
   subject: {
     backgroundColor: "white",

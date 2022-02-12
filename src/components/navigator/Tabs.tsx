@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Badge } from 'react-native-paper';
 
 
 const Tabs = ({ navigation }:Props) => {    
@@ -12,13 +13,13 @@ const Tabs = ({ navigation }:Props) => {
     return (
         <View style={styles.buttonStyleContainer}>
             <TouchableOpacity  style={styles.button} onPress={() => navigation.navigate('Feed')}>
-  	<Ionicons name="notifications"  size={30} color="#007AFF"/>
+            <View><Ionicons name="notifications"  size={30} color="#3366FF"/><Badge style={styles.badge}>3</Badge></View>
     </TouchableOpacity>
     <TouchableOpacity  style={styles.button} onPress={() => navigation.navigate('Feed')}>
-  	<Ionicons name="newspaper"  size={30} color="#007AFF"/>
+    <View><Ionicons name="newspaper"  size={30} color="#3366FF"/><Badge style={styles.badge}>7</Badge></View>
     </TouchableOpacity>
     <TouchableOpacity  style={styles.button} onPress={() => navigation.navigate('Feed')}>
-  	<MaterialIcons name="support-agent"  size={30} color="#007AFF"/>
+    <View><MaterialIcons name="support-agent"  size={30} color="#3366FF"/><Badge style={styles.badge}>1</Badge></View>
     </TouchableOpacity>
         </View>
     )
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: "5%",
         paddingHorizontal: 50,
-        backgroundColor: "white",
+        backgroundColor: "#D6DEF8",
         borderRadius: 10,
         marginBottom: "5%",
 
@@ -46,10 +47,12 @@ const styles = StyleSheet.create({
         marginVertical: "3%",
         marginBottom: "5%"
       },
-      text: {
-        fontSize: 18,
-        color: "white",
-        textAlign: "center",
+      badge: {
+        position: "absolute", 
+        right: 20, 
+        bottom:0, 
+        color: "white", 
+        backgroundColor: "#F84F31"
       },
 });
 
