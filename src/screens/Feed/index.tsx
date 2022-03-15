@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Image} from 'react-native';
 import { StyleSheet } from "react-native"
-import AppStyles from '../config/styles';
-import FeedList from '../components/FeedList';
+import AppStyles from '../../config/styles';
+import FeedList from '../../components/FeedList';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
-import { props as types } from '../components/FeedList/FeedItem';
+import { props as types } from '../../components/FeedList/FeedItem';
 
 
 export default function Feed() {
@@ -26,10 +26,10 @@ export default function Feed() {
             <View style={{ width: "85%", alignSelf: "center", marginVertical: "5%" }}>
                 <SegmentedControl
                     style={{ padding: "10%" }}
-                    tintColor={index.tintColor}
-                    backgroundColor={index.backgroundColor}
-                    fontStyle={{ color: index.fontStyle }}
-                    activeFontStyle={{ color: index.activeFontStyle, fontWeight: "bold", fontSize: 16}}
+                    tintColor={"white"}
+                    backgroundColor={"white"}
+                    fontStyle={{ color: "black" }}
+                    activeFontStyle={{ color: "black", fontWeight: "bold", fontSize: 16}}
                     values={['All', 'Disclaimer', 'Success']}
                     selectedIndex={index}
                     onChange={(event) => {

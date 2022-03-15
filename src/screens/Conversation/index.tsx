@@ -158,7 +158,7 @@ const Conversation = ({ navigation, route }: Props) => {
 											onPress={onAvatarPress}
 											style={styles.avatarButton}>
 											<Image
-												source={require("../../assets/images/-avatar.png")}
+												source={require("../../../assets/images/-avatar.png")}
 												style={styles.avatarImage}/>
 										</TouchableOpacity>
 									</View>

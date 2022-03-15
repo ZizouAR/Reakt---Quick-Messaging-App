@@ -6,9 +6,9 @@ import { Text, Platform } from 'react-native';
 import { h, w } from "../../config/dimensions";
 
 // Screens
-import Groups from '../../screens/GroupsScreen';
-import RecentMessagesListScreen from '../../screens/RecentMessagesListScreen';
-import Contacts from '../../screens/ContactsScreen';
+import Groups from '../../screens/Groups';
+import RecentMessagesList from '../../screens/RecentMessagesList';
+import Contacts from '../../screens/Contacts';
 import Scan from '../../screens/Scan';
 import AppStyles from '../../config/styles';
 
@@ -99,7 +99,7 @@ export default function BottomNavigator(props: any) {
       {/*<SegmentedControl/>*/}
       <Tab.Screen
         name="Chat"
-        component={RecentMessagesListScreen}
+        component={RecentMessagesList}
         options={{ tabBarBadge: 3, tabBarBadgeStyle: { marginTop: Platform.OS === 'ios' ? 0 : "25%" } }}
       />
       <Tab.Screen name="Groups" component={Groups} />
