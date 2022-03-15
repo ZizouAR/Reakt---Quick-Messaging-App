@@ -20,6 +20,7 @@ const NewMessage:any = ({ setMessages, messages }:Props) => {
                 visibility={firstModalActive}
                 setVisibility={setFirstModalActive}
             >   
+            <View style={{flex: 1}}>
                 <GenerateNewUserAndMessageButton setFirstModalActive={setFirstModalActive} messages={messages} setMessages={setMessages} />
                 <Button title="Open another text" onPress={() => setSecondModalActive(true)}/>
 
@@ -31,6 +32,7 @@ const NewMessage:any = ({ setMessages, messages }:Props) => {
                 >
                     
                 </Modal>
+                </View>
             </Modal>
         </TouchableOpacity>
     )

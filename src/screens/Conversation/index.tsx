@@ -15,15 +15,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Modal from '../../components/modal/Modal';
-import ProfileImage from '../../components/image/ProfileImage';
-import ActionButton from '../../components/buttons/ActionButton';
+import UserProfile from "./UserProfile";
+
+
 
 const Conversation = ({ navigation, route }: Props) => {
 
 	const [text, setText] = useState('');
 	const [inputWidth, setInputWidth] = useState(62*w);
     const [modalOpen, setModalOpen] = useState(false);
-    const [contact, setContacat] = useState(route.params.contact);
 
 
 	const onArrowBackPress = () => {
@@ -286,15 +286,7 @@ const Conversation = ({ navigation, route }: Props) => {
 					</View>
 				</View>
 				<Modal title="" visibility={modalOpen} setVisibility={setModalOpen}>
-                <ProfileImage id={contact.id} image={contact.image} gender={contact.gender} name={contact.name} />
-                <Text numberOfLines={2} style={{ fontSize: 32, maxWidth: "75%", marginTop: 8 }}>{contact.name}</Text>
-
-                <View style={{ flexDirection: "row", marginTop: 16 }}>
-                    <ActionButton iconName="phone" disabled={!contact.phone ? true : false} onPress={() => Alert.alert(`Could not call ${contact.phone}.`)} />
-                    <ActionButton iconName="video-camera" disabled={true} onPress={null} />
-                    <ActionButton iconName="envelope" disabled={!contact.email ? true : false} onPress={() => Alert.alert(`Could not send an email to ${contact.email}.`)} />
-                    <ActionButton iconName="globe" disabled={false} onPress={() => Linking.canOpenURL("https://marcusfredriksson.com").then(supported => supported ? Linking.openURL("https://marcusfredriksson.com") : null)} />
-                </View>
+                <UserProfile contact={route.params.contact}/>
             </Modal>
 			</View>
 }
