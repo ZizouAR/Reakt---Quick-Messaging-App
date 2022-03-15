@@ -1,102 +1,110 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-import { Text, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Text, Platform } from 'react-native';
+import { h, w } from "../../config/dimensions";
 
 // Screens
 import Groups from '../../screens/GroupsScreen';
 import RecentMessagesListScreen from '../../screens/RecentMessagesListScreen';
-import Settings from '../../screens/SettingsScreen';
 import Contacts from '../../screens/ContactsScreen';
 import Scan from '../../screens/Scan';
-import Feed from '../../screens/Feed';
-import SegmentedControl from '../../components/buttons/SegmentedControl';
+import AppStyles from '../../config/styles';
+
+
+export const tabBarStyle = {
+  bottom: 3.1 * h,
+  marginLeft: 5.3 * w,
+  marginRight: 5.3 * w,
+  elevation: 0,
+  borderRadius: 15,
+  height: 11.1 * h,
+  position: 'absolute', 
+  paddingHorizontal: "5%",
+  paddingVertical: Platform.OS === 'ios' ? "7%" : null,
+  backgroundColor: AppStyles.colors.lightBleu
+}
+
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomNavigator() {
+
+export default function BottomNavigator(props: any) {
+
   return (
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            if (route.name === 'Chat') {
-              return (
-                <Ionicons
-                  name={
-                    focused
-                      ? 'chatbubble-sharp'
-                      : 'chatbubble-outline'
-                  }
-                  size={size}
-                  color={color}
-                  
-                />
-              );
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarShowLabel: false,
+        tabBarIcon: ({ focused, color, size }) => {
+          size = 30
+          if (route.name === 'Chat') {
+            return (
+              <Ionicons
+                name={
+                  focused
+                    ? 'chatbubble-sharp'
+                    : 'chatbubble-outline'
+                }
+                size={size}
+                color={color}
+
+              />
+            );
 
 
-            } else if (route.name === 'Groups') {
-              return (
-                <MaterialCommunityIcons
-                  name={focused ? 'account-group': 'account-group-outline'}
-                  size={size}
-                  color={color}
-                />
-              );
-            }
-
-            else if (route.name === 'Contacts') {
-              return (
-                <MaterialCommunityIcons
-                  name={focused ? 'contacts': 'contacts-outline'}
-                  size={size}
-                  color={color}
-                />
-              );
-            }
-
-            else if (route.name === 'Scan') {
-              return (
-                <Ionicons
-                  name={focused ? 'ios-scan-circle': 'ios-scan-circle-outline'}
-                  size={size}
-                  color={color}
-                />
-              );
-            }
-
-          },
-          tabBarInactiveTintColor: 'black',
-          tabBarActiveTintColor: '#3366FF',
-          tabBarLabel: ({ focused }) => {
-            let label;
-            return label = focused ? <Text style={{fontSize: 10, color: "#3366FF"}}>{route.name}</Text> : null
-          },
-
-
-          tabBarStyle: {
-            bottom: 25, 
-            marginLeft: 20, 
-            marginRight: 20,
-            elevation: 0,
-            borderRadius: 15,
-            height: 90,
-            padding: 20,
-            backgroundColor: "#D6DEF8"
+          } else if (route.name === 'Groups') {
+            return (
+              <MaterialCommunityIcons
+                name={focused ? 'account-group' : 'account-group-outline'}
+                size={size + 3}
+                color={color}
+              />
+            );
           }
-        })}
-      >
-        {/*<SegmentedControl/>*/}
-        <Tab.Screen
-          name="Chat"
-          component={RecentMessagesListScreen}
-          options={{ tabBarBadge: 3}}
-          
 
-        />
-        <Tab.Screen name="Groups" component={Groups} />
-        <Tab.Screen name="Contacts" component={Contacts} />
-        <Tab.Screen name="Scan" component={Scan} options={{ headerShown: false }} />
-      </Tab.Navigator>
+          else if (route.name === 'Contacts') {
+            return (
+              <MaterialCommunityIcons
+                name={focused ? 'contacts' : 'contacts-outline'}
+                size={size - 3}
+                color={color}
+              />
+            );
+          }
+
+          else if (route.name === 'Scan') {
+            return (
+              <Ionicons
+                name={focused ? 'ios-scan-circle' : 'ios-scan-circle-outline'}
+                size={size + 2}
+                color={color}
+              />
+            );
+          }
+
+        },
+        tabBarInactiveTintColor: 'black',
+        tabBarActiveTintColor: AppStyles.colors.bleu,
+        tabBarLabel: ({ focused }) => {
+          let label;
+          return label = focused ? <Text style={{ fontSize: 10, color: AppStyles.colors.bleu }}>{route.name}</Text> : null
+        },
+
+        tabBarStyle: {
+          ...tabBarStyle
+        }
+      })}
+    >
+      {/*<SegmentedControl/>*/}
+      <Tab.Screen
+        name="Chat"
+        component={RecentMessagesListScreen}
+        options={{ tabBarBadge: 3, tabBarBadgeStyle: { marginTop: Platform.OS === 'ios' ? 0 : "25%" } }}
+      />
+      <Tab.Screen name="Groups" component={Groups} />
+      <Tab.Screen name="Contacts" component={Contacts} />
+      <Tab.Screen name="Scan" component={Scan} options={{ headerShown: false }} />
+    </Tab.Navigator>
   );
 }

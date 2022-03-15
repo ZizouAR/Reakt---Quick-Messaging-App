@@ -3,6 +3,7 @@ import { SectionList, View, ScrollView } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import SearchBarSmall from '../../components/search/SearchBarSmall';
+import { tabBarStyle } from "../../components/navigator/BottomNavigator";
 
 import ContactItem from './ContactItem';
 import AppStyles from '../../config/styles';
@@ -10,9 +11,9 @@ import AppStyles from '../../config/styles';
 import { users } from './data';
 import styles from './styles';
 
-export default function CallsList() {
+export default function CallsList({ navigation }: any) {
 
-    const [ value, setValue ] = useState("");
+    const [value, setValue] = useState("");
 
     const renderItem = ({ item }: any) => {
         return <ContactItem item={item} />;
@@ -58,18 +59,32 @@ export default function CallsList() {
         { title: 'Suggested', data: suggested }
     ];
 
-        return (
-            <View>
+
+    const onScroll = (opacity: number) => {
+        navigation.setOptions({
+            tabBarStyle: {
+                ...tabBarStyle,
+                opacity
+            }
+        })
+    }
+
+
+    return (
+        <View>
             <View style={styles.searchBar}>
-            <SearchBarSmall value={value} setValue={setValue}/>
+                <SearchBarSmall value={value} setValue={setValue}/>
             </View>
             <SectionList
+                onScrollBeginDrag={() => onScroll(0.3)} 
+                onScrollEndDrag={() => onScroll(1)}
+                onMomentumScrollEnd={() => onScroll(1)}
                 renderItem={renderItem}
                 renderSectionHeader={renderSectionHeader}
                 sections={data}
                 keyExtractor={(item, index) => item + index}
                 ListHeaderComponent={renderHeader}
             />
-            </View>
-        );
+        </View>
+    );
 }

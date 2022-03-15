@@ -12,14 +12,16 @@ import NewMessage from './src/components/buttons/NewMessage';
 import BottomNavigator from './src/components/navigator/BottomNavigator';
 
 // Screens
-import Groups from './src/screens/GroupsScreen';
-import ConversationScreen from './src/screens/ConversationScreen';
+import Groups from './src/screens/Groups';
+import Conversation from './src/screens/Conversation';
 import Login from './src/screens/Auth/Login'
 import FingerPrint from './src/screens/Auth/FingerPrint'
 import PhoneNumber from './src/screens/Auth/PhoneNumber'
 import SMSVerification from './src/screens/Auth/SMSVerification'
 import Welcome from './src/screens/Auth/Welcome'
 import Feed from './src/screens/Feed'
+import Events from './src/screens/Events'
+import NewEvent from './src/screens/Events/NewEvent'
 
 
 // Data
@@ -77,11 +79,15 @@ LogBox.ignoreAllLogs();//Ignore all log notification
         <AppearanceProvider>
           <NavigationContainer theme={scheme === "dark" ? iOSDarkTheme : iOSLightTheme}>
             <Stack.Navigator initialRouteName="FingerPrint">
+              
               {/* Logged-in stack */}
-              <Stack.Screen name="Message" component={ConversationScreen} options={{ headerShown: false }}/>
+              <Stack.Screen name="Message" component={Conversation} options={{ headerShown: false }}/>
               <Stack.Screen name="Groups" component={Groups}/>
               <Stack.Screen name="Home" component={BottomNavigator} options={{ headerShown: false }}/>
               <Stack.Screen name="Feed" component={Feed}/>
+              <Stack.Screen name="Events" component={Events}/>
+              <Stack.Screen name="NewEvent" component={NewEvent}/>
+
               {/* Logged-out stack */}
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
               <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }}/>

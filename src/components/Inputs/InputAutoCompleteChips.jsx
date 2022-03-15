@@ -3,22 +3,19 @@ import { Platform } from 'react-native';
 import TagInput from 'react-native-tag-input';
 
 
-const inputProps = {
-  keyboardType: 'default',
-  placeholder: '@user',
-  autoFocus: true,
-  style: {
-    fontSize: 14,
-    marginVertical: Platform.OS == 'ios' ? 10 : -2,
-  },
-};
-
-
 
 export default class InputAutoCompleteChips extends Component {
   state = {
-    tags: ["Abdelhamid Larachi"],
-    text: ""
+    tags: this.props.tags,
+    text: "",
+    inputProps: {
+      keyboardType: 'default',
+      placeholder: this.props.placeholder,
+      autoFocus: this.props.autoFocus,
+      style: {
+        fontSize: 14,
+        marginVertical: Platform.OS == 'ios' ? 10 : -2,
+    }}
   };
 
   onChangeTags = (tags) => {
@@ -53,7 +50,7 @@ export default class InputAutoCompleteChips extends Component {
         onChangeText={this.onChangeText}
         tagColor="#007aff"
         tagTextColor="white"
-        inputProps={inputProps}
+        inputProps={this.state.inputProps}
         tagContainerStyle={{height: "80%", borderRadius: 10}}
       />
     );

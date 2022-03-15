@@ -9,7 +9,13 @@ const AppStyles = {
         grey: 'grey',
         green: 'green',
         onlineGreen: '#2ecc71',
-        lightWhite: '#f9f9f9'
+        lightWhite: '#f9f9f9',
+        bleu: '#3366FF',
+        lightBleu: '#D6DEF8',
+        darkBleu: "#000367",
+        alert: "#F60C51",
+        success: "#16EC83",
+        important : "#7190FE"
     },
     fonts: {
         FONT_REGULAR: 'Roboto-Regular',

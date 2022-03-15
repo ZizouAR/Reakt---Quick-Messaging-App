@@ -1,7 +1,6 @@
 import { useTheme } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Button, SafeAreaView } from 'react-native';
-import styled from 'styled-components/native';
 
 const ModalHeader = ({ title, close, modalLevel }:Props) => {
     const level = modalLevel ? modalLevel * 25 : 10;

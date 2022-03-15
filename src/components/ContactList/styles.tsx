@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     searchBar: {
-        marginTop: "20%"
+        marginTop: "16%",
+        backgroundColor: "transparent"
     }
 });
 

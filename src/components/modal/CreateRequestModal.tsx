@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { FAB } from 'react-native-paper';
 import Modal from './Modal';
 import InputAutoCompleteChips from '../Inputs/InputAutoCompleteChips';
@@ -48,10 +48,11 @@ export default function CreateRequestModal() {
       
       <Modal title="✏️ Create Request" visibility={modalOpen} setVisibility={setModalOpen}>
 
-      
+      <View style={styles.container}>
+
       <View style={styles.TextView}>
         <Text style={styles.to}>To:  </Text>
-      <InputAutoCompleteChips/>
+      <InputAutoCompleteChips tags={["Abdelhamid Larachi"]} placeholder={"@user"} autoFocus={false}/>
       </View>
 
       <View style={styles.TextView}>
@@ -64,10 +65,7 @@ export default function CreateRequestModal() {
       maxLength={40}
     />    
       </View>
-
-
       <View style={styles.divider}/>
-
       <TextInput
       style={styles.description}
       placeholder="Description"
@@ -79,7 +77,7 @@ export default function CreateRequestModal() {
     />
 
 
-<View style={[styles.icons, { bottom: keyboard.keyboardHeight + 14.77*h }]}>
+<View style={styles.icons}>
 
 <TouchableOpacity style={styles.icon} onPress={() => setVoice()}>
   	<MaterialCommunityIcons name="microphone"  size={23} color="#ABAFB2"/>
@@ -96,9 +94,10 @@ export default function CreateRequestModal() {
 <TouchableOpacity style={styles.send} onPress={() => send()}>
   <Ionicons name="md-send"  size={23} color="#007aff" />
 </TouchableOpacity>
+
 </View>
 
-
+</View>
     </Modal>
       </View>
 };
@@ -110,14 +109,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
     margin: 30,
     right: 0,
-    bottom: 30,
+    bottom: 120,
   },
   subject: {
     backgroundColor: "white",
     fontSize: 14,
     width: "82%"
   },
-
+  container: {
+    flex: 1,
+    width: "100%"
+  },
   TextView: { 
     marginTop: "5%",
     flexDirection: 'row', 
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     padding: 10,
     width: "100%",
-    height: "25%",
+    height: "50%",
   },
   icons: { 
     marginTop: "5%",
@@ -137,7 +139,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: "flex-start",
     width: "100%",
-    position: "absolute"
   },
   to: {
     color: "#605e56"
