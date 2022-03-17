@@ -149,7 +149,7 @@ const Conversation = ({ navigation, route }: Props) => {
 					marginLeft: "5%"
 				}}>
 					<TouchableOpacity onPress={onArrowBackPress}>
-						<Ionicons name="chevron-back" size={20} color="#ABAFB2" />
+						<Ionicons name="chevron-back" size={25} color="#ABAFB2" />
 					</TouchableOpacity>
 				</View>
 
@@ -359,7 +359,6 @@ const styles = StyleSheet.create({
 		color: "black",
 		fontFamily: "ArialMT",
 		fontSize: 2 * h,
-		fontWeight: "500",
 		textAlign: "center",
 		backgroundColor: "transparent",
 		width: '100%',
