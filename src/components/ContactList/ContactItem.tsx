@@ -5,26 +5,26 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import AppStyles from '../../config/styles'
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
-
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class ContactItem extends Component {
     onPress = () => {
         console.log('Pressed');
     };
     static propTypes: { name: PropTypes.Requireable<object>; picture: PropTypes.Requireable<object>; login: PropTypes.Requireable<object>; item: PropTypes.Requireable<object>; };
-    
-    
+
+
     render() {
         const { name, picture, login } = this.props.item;
 
         return (
-            <TouchableRipple
+            <TouchableOpacity
                 onPress={this.onPress}
-                rippleColor="rgba(0, 0, 0, .32)"
             >
                 <View style={styles.item}>
-                <Avatar uri={picture.thumbnail} />
+                    <Avatar uri={picture.thumbnail} />
                     <View style={styles.nameView}>
                         <Text style={styles.head}>
                             {name.first[0].toUpperCase() +
@@ -35,30 +35,25 @@ export default class ContactItem extends Component {
                         </Text>
                         <Text style={styles.sub}>@{login.username}</Text>
                     </View>
-                    <TouchableRipple
+                    <TouchableOpacity
                         onPress={this.onPress}
                         style={styles.icon}
-                        rippleColor="rgba(0, 0, 0, .32)"
                     >
                         <Icon
                             size={24}
                             color={AppStyles.colors.accentColor}
                             name="call"
                         />
-                    </TouchableRipple>
-                    <TouchableRipple
+                    </TouchableOpacity>
+                    <TouchableOpacity
                         onPress={this.onPress}
                         style={styles.icon}
-                        rippleColor="rgba(0, 0, 0, .32)"
                     >
-                        <Icon
-                            size={24}
-                            color={AppStyles.colors.accentColor}
-                            name="videocam"
-                        />
-                    </TouchableRipple>
+                        <FontAwesome5 name="tasks" size={24} color={AppStyles.colors.accentColor}/>
+
+                    </TouchableOpacity>
                 </View>
-            </TouchableRipple>
+            </TouchableOpacity>
         );
     }
 }

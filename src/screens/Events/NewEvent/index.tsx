@@ -13,6 +13,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import InputAutoCompleteChips from "../../../components/Inputs/InputAutoCompleteChips";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import AppStyles from '../../../config/styles';
 
 
 
@@ -22,13 +23,10 @@ export default function NewEvent() {
   const [mode, setMode] = useState('datetime');
   const [show, setShow] = useState(false);
 
-  const onAddParticipantsPressed = () => {
-
-    setOpen(true)
-  }
 
 
-  const onChange = (event, selectedDate) => {
+
+  const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
     setDate(currentDate);
   };
@@ -47,10 +45,8 @@ export default function NewEvent() {
   }
 
 
-  return <View
-    style={styles.newEventView}>
+  return <View style={styles.newEventView}>
     <ScrollView
-      showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       style={styles.contentScrollView}
       >
@@ -60,8 +56,8 @@ export default function NewEvent() {
         <TextInput
           autoCorrect={false}
           placeholder="Event title"
-          style={styles.titleTextInput}
           maxLength={100}
+          style={styles.titleTextInput}
           />
       </View>
       {/*<Text>selected: {date.toLocaleString()}</Text>*/}
@@ -103,7 +99,7 @@ export default function NewEvent() {
       </View>
       <View
         style={styles.eventDetailsDetailFiveView}>
-        <Ionicons name="pricetags-outline" color="gray" size={23} />
+        <Ionicons style={{marginLeft: "5%"}} name="pricetags-outline" color="gray" size={23} />
         <ScrollView
           horizontal={true}
           style={styles.eventOptionComponentsTitleScrollView}>
@@ -119,8 +115,9 @@ export default function NewEvent() {
           autoCorrect={false}
           placeholder="Add Location"
           maxLength={100}
-          style={styles.addParticipantsFourText} />
+          style={styles.addLocation} />
       </View>
+      {/*
       <View
         style={styles.eventDetailsDetailTwoView}>
         <Ionicons name="people-outline" color="gray" size={23} />
@@ -131,6 +128,8 @@ export default function NewEvent() {
           maxLength={400}
           style={styles.addParticipantsTwoText} />
       </View>
+      */}
+
       <View
         style={styles.eventDetailsDetailView}>
         <MaterialIcons name="notes" color="gray" size={23} />
@@ -139,7 +138,15 @@ export default function NewEvent() {
           autoCorrect={false}
           placeholder="Add Description"
           maxLength={400}
-          style={styles.addParticipantsText} />
+          style={styles.addDescription} />
+      </View>
+
+      <View>
+        <TouchableOpacity style={styles.circle}>
+        <Ionicons name="checkmark" style={{alignSelf: "center"}} color={AppStyles.colors.bleu} size={30} />
+        </TouchableOpacity>
+        
+        
       </View>
       </View>
       </View>
@@ -153,6 +160,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end'
   },
+
+  circle: {
+    marginTop: "20%",
+    marginRight: "5%",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: AppStyles.colors.lightBleu,
+    alignSelf: "flex-end",
+    justifyContent: "center",
+  },
+  
 
   newEventView: {
     flex: 1,
@@ -185,7 +204,7 @@ const styles = StyleSheet.create({
     fontWeight: "normal",
     textAlign: "left",
     padding: 0,
-    width: "80%",
+    width: "100%",
     marginVertical: "20%"
   },
 
@@ -308,7 +327,9 @@ const styles = StyleSheet.create({
     marginTop: 2.7 * h,
   },
   eventDetailsDetailFiveView: {
+    width: "100%",
     flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
   },
   iconsEventParticipantsCopy3FiveImage: {
@@ -404,7 +425,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     marginTop: "10%",
     flexDirection: "row",
-    alignItems: "center",
+    justifyContent: "center",
   },
   iconsEventParticipantsCopy3FourImage: {
     backgroundColor: "transparent",
@@ -413,13 +434,14 @@ const styles = StyleSheet.create({
     height: 2.7 * h,
     marginLeft: 9.6 * w,
   },
-  addParticipantsFourText: {
+  addLocation: {
     color: "rgb(141, 146, 166)",
     fontFamily: "ArialMT",
     fontStyle: "normal",
     fontWeight: "normal",
     textAlign: "center",
-    width: "72%",
+    width: "75%",
+    marginLeft: "10%",
     fontSize: 16
   },
   eventDetailsDetailThreeView: {
@@ -472,8 +494,9 @@ const styles = StyleSheet.create({
   eventDetailsDetailView: {
     backgroundColor: "transparent",
     flexDirection: "row",
-    alignItems: "center",
-    marginTop: "8%",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    marginTop: "8%"
   },
   iconsEventParticipantsCopy3Image: {
     resizeMode: "center",
@@ -482,13 +505,14 @@ const styles = StyleSheet.create({
     height: 2.1 * h,
     marginLeft: 9.6 * w,
   },
-  addParticipantsText: {
+  addDescription: {
     color: "rgb(141, 146, 166)",
     fontFamily: "ArialMT",
     fontStyle: "normal",
     fontWeight: "normal",
     textAlign: "center",
-    width: "80%",
+    width: "75%",
+    marginLeft: "10%",
     fontSize: 16
   },
 })

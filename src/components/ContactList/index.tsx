@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SectionList, View, ScrollView } from 'react-native';
+import { SectionList, View, ScrollView, TouchableOpacity } from 'react-native';
 import { Text, TouchableRipple } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import SearchBarSmall from '../../components/search/SearchBarSmall';
@@ -33,9 +33,8 @@ export default function CallsList({ navigation }: any) {
 
     const renderHeader = () => {
         return (
-            <TouchableRipple
+            <TouchableOpacity
                 onPress={onPress}
-                rippleColor="rgba(0, 0, 0, .32)"
             >
                 <View style={styles.groupView}>
                     <Icon
@@ -47,7 +46,7 @@ export default function CallsList({ navigation }: any) {
 
                     <Text style={styles.grpText}>Start Group Call</Text>
                 </View>
-            </TouchableRipple>
+            </TouchableOpacity>
         );
     };
 

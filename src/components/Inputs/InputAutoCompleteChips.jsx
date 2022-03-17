@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import TagInput from 'react-native-tag-input';
+import AppStyles from '../../config/styles';
 
 
 
@@ -48,7 +49,7 @@ export default class InputAutoCompleteChips extends Component {
         labelExtractor={this.labelExtractor}
         text={this.state.text}
         onChangeText={this.onChangeText}
-        tagColor="#007aff"
+        tagColor={AppStyles.colors.bleu}
         tagTextColor="white"
         inputProps={this.state.inputProps}
         tagContainerStyle={{height: "80%", borderRadius: 10}}

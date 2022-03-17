@@ -13,7 +13,7 @@ import { h, w } from "../../../config/dimensions";
 
 export default class ListItemInvite extends React.Component {
 
-  constructor(props) {
+  constructor(props: any) {
     super(props)
   }
 
@@ -30,7 +30,7 @@ export default class ListItemInvite extends React.Component {
     return <TouchableWithoutFeedback
         onPress={this.onListItemInvitePress}>
         <View
-          navigation={this.props.navigation}
+          //navigation={this.props.navigation}
           style={styles.listItemInvite}>
          
           <View
