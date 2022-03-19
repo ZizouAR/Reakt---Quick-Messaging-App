@@ -24,7 +24,7 @@ export default class ContactItem extends Component {
                 onPress={this.onPress}
             >
                 <View style={styles.item}>
-                    <Avatar uri={picture.thumbnail} />
+                    <Avatar size={48} uri={picture.thumbnail} />
                     <View style={styles.nameView}>
                         <Text style={styles.head}>
                             {name.first[0].toUpperCase() +

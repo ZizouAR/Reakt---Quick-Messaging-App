@@ -16,7 +16,7 @@ export default function CallsList({ navigation }: any) {
     const [value, setValue] = useState("");
 
     const renderItem = ({ item }: any) => {
-        return <ContactItem item={item} />;
+        return <ContactItem  item={item} />;
     };
 
     const onPress = () => {

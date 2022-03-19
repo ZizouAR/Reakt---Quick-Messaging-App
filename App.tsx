@@ -21,7 +21,7 @@ import SMSVerification from './src/screens/Auth/SMSVerification'
 import Welcome from './src/screens/Auth/Welcome'
 import Feed from './src/screens/Feed'
 import Events from './src/screens/Events'
-import NewEvent from './src/screens/Events/NewEvent'
+import Tasks from './src/screens/Tasks'
 
 
 // Data
@@ -86,7 +86,7 @@ LogBox.ignoreAllLogs();//Ignore all log notification
               <Stack.Screen name="Home" component={BottomNavigator} options={{ headerShown: false }}/>
               <Stack.Screen name="Feed" component={Feed}/>
               <Stack.Screen name="Events" component={Events}/>
-              <Stack.Screen name="NewEvent" component={NewEvent}/>
+              <Stack.Screen name="Tasks" component={Tasks}/>
 
               {/* Logged-out stack */}
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>

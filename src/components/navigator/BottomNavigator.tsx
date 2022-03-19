@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { Text, Platform } from 'react-native';
 import { h, w } from "../../config/dimensions";
 
@@ -9,7 +8,8 @@ import { h, w } from "../../config/dimensions";
 import Groups from '../../screens/Groups';
 import RecentMessagesList from '../../screens/RecentMessagesList';
 import Contacts from '../../screens/Contacts';
-import Scan from '../../screens/Scan';
+//import Scan from '../../screens/Scan';
+import Tasks from '../../screens/Tasks';
 import AppStyles from '../../config/styles';
 
 
@@ -73,11 +73,23 @@ export default function BottomNavigator(props: any) {
             );
           }
 
+          /*
           else if (route.name === 'Scan') {
             return (
               <Ionicons
                 name={focused ? 'ios-scan-circle' : 'ios-scan-circle-outline'}
                 size={size + 2}
+                color={color}
+              />
+            );
+          }
+*/
+
+          else if (route.name === 'Tasks') {
+            return (
+              <Ionicons
+                name={focused ? 'list-circle' : 'list-circle-outline'}
+                size={size+2}
                 color={color}
               />
             );
@@ -104,7 +116,8 @@ export default function BottomNavigator(props: any) {
       />
       <Tab.Screen name="Groups" component={Groups} />
       <Tab.Screen name="Contacts" component={Contacts} />
-      <Tab.Screen name="Scan" component={Scan} options={{ headerShown: false }} />
+      {/*<Tab.Screen name="Scan" component={Scan} options={{ headerShown: false }} />*/}
+      <Tab.Screen name="Tasks" component={Tasks} />
     </Tab.Navigator>
   );
 }

@@ -22,7 +22,9 @@ const styles = StyleSheet.create({
         borderTopColor: AppStyles.colors.separator
     },
     nameView: {
+        flex: 1,
         alignItems: 'center',
+        justifyContent: "center",
         padding: 8,
         paddingTop: 16
     },

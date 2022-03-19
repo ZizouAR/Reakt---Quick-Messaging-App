@@ -3,14 +3,10 @@ import AppStyles from '../../config/styles';
 
 const styles = StyleSheet.create({
     avatarView: {
-        width: 48,
-        height: 48,
         backgroundColor: AppStyles.colors.separator,
         borderRadius: 24
     },
     avatar: {
-        width: 48,
-        height: 48,
         borderRadius: 24,
         overflow: 'hidden'
     },

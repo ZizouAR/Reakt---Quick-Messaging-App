@@ -4,9 +4,6 @@ import FeedItem from './FeedItem';
 import styles from './styles';
 
 
-
-  
-
 const data = [
     {
         title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
@@ -66,7 +63,7 @@ const data = [
     }
 ];
 
-export default function GroupsList() {
+export default function FeedList() {
     const renderItem = ({ item }:any) => {
         return <FeedItem item={item} />;
     };
