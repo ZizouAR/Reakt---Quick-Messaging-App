@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Card, Text } from 'react-native-paper';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons';
 import { h, w } from "../../config/dimensions";
 
 
@@ -11,6 +9,15 @@ import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AppStyles from '../../config/styles';
+
+
+
+
+const palette = [
+    { background: "#CDE4E3", text: "#499494" },
+    { background: "#FFE1DB", text: "#F37A72" },
+    { background: "#E8E5F4", text: "#817C99" },
+];
 
 
 export default class TaskItem extends Component {
@@ -29,9 +36,11 @@ export default class TaskItem extends Component {
             "https://media-exp1.licdn.com/dms/image/C4E03AQHSad0h6j9TlA/profile-displayphoto-shrink_800_800/0/1612870024633?e=1652918400&v=beta&t=rDMFT0JcdXF-5JXNhS4h6M3uiWvPi5IOTcrWJEK6JgQ",
             "https://media-exp1.licdn.com/dms/image/C4E03AQHSad0h6j9TlA/profile-displayphoto-shrink_800_800/0/1612870024633?e=1652918400&v=beta&t=rDMFT0JcdXF-5JXNhS4h6M3uiWvPi5IOTcrWJEK6JgQ"
         ];
+
         let left = 0;
+
         return (
-            <View style={{ flexDirection: "row", flex: 1, height: 38, width: "100%", marginTop: "5%"}}>
+            <View style={{ flexDirection: "row", flex: 1, height: 38, width: "100%", marginTop: "5%" }}>
                 {numbers.map(function (profile, i) {
                     if (i < prop.max) {
                         if (i > 0) left += 28;
@@ -42,7 +51,7 @@ export default class TaskItem extends Component {
                         )
                     }
                 })}
-                <TouchableOpacity style={{ alignItems: "center", justifyContent: "center", backgroundColor: "#DCDCDC", position: prop.position, left: left + 28, width: 38, height: 38, borderRadius: 19 }}>
+                <TouchableOpacity style={{ alignItems: "center", justifyContent: "center", backgroundColor: "#F6F5FC", position: prop.position, left: left + 28, width: 38, height: 38, borderRadius: 19 }}>
                     <Text style={{ fontSize: 16, color: "#696969" }}>+{numbers.length - prop.max}</Text>
                 </TouchableOpacity>
             </View>
@@ -52,18 +61,17 @@ export default class TaskItem extends Component {
     render() {
         const { item }: any = this.props;
         return (
-            <Card style={styles.card} onPress={this.onPress}>
+            <Card style={[styles.card, { backgroundColor: palette[item.term].background }]} onPress={this.onPress}>
                 <View style={styles.cardView}>
                     <View style={styles.nameView}>
                         <View style={styles.header}>
                             <View style={styles.titleView}>
-                                <Text style={styles.title}>{item.title}</Text>
-                                <Text style={styles.datetime}>{item.last_active}</Text>
-
+                                <Text style={[styles.title, { color: palette[item.term].text }]}>{item.title}</Text>
+                                <Text style={[styles.datetime, { color: palette[item.term].text }]}>{item.last_active}</Text>
                             </View>
                         </View>
                         <View style={styles.descriptionView}>
-                            <Text style={styles.description}>{item.description}</Text>
+                            <Text style={[styles.description, { color: palette[item.term].text }]}>{item.description}</Text>
                         </View>
                         <this.AvatarGroup position="absolute" max={3} />
                     </View>

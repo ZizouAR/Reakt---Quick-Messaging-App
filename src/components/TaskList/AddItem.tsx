@@ -6,12 +6,17 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
+
+
 export default class TaskItem extends Component {
     onPress = () => {
         alert('Pressed');
     };
 
+
+
     render() {
+
         return (
             <Card style={styles.card} onPress={this.onPress}>
                 <View style={styles.cardView}>
@@ -28,7 +33,7 @@ export default class TaskItem extends Component {
 const styles = StyleSheet.create({
     card: {
         width: "90%",
-        borderRadius: 12,
+        borderRadius: 8,
         marginVertical: "5%",
         backgroundColor: "#F6F5FC",
         alignSelf: "center",
@@ -41,7 +46,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         resizeMode: "stretch",
-        borderRadius: 10,
+        borderRadius: 8,
         backgroundColor: "#E8E5F4",
         alignItems: "center",
         justifyContent: "center"

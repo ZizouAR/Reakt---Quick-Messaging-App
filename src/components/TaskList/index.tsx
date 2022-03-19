@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useRef, useState } from 'react';
+import React, { Component, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { FlatList, View, Animated, Text } from 'react-native';
 import TaskItem from './TaskItem';
 import AddItem from './AddItem';
@@ -6,69 +6,91 @@ import styles from './styles';
 import SearchBarSmall from '../../components/search/SearchBarSmall';
 import { tabBarStyle } from '../navigator/BottomNavigator';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Button } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { h, w, HEIGHT, WIDTH } from '../../config/dimensions';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
+
+const enum term {
+    short,
+    mid,
+    long
+}
 
 const data = [
     {
-        title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
+        title: 'WeReakt App Developement',
         description: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
         last_active: 'Dec 03, 2022 15:00 PM',
         members: 'Abdelhamid, Zinnedine, Soltane, Moha + 320',
-        type: "DISCLAIMER"
+        type: "DISCLAIMER",
+        term: term.long
     },
     {
-        title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
+        title: 'Create WeStrict App',
         description: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
         last_active: 'Dec 03, 2022 15:00 PM',
         members: 'Vicky, Alex, Bob, William + 256',
-        type: "SUCCESS"
+        type: "SUCCESS",
+        term: term.short
     },
     {
-        title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
+        title: 'Design WePolitic Mobile App',
         description: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
         last_active: 'Dec 03, 2022 15:00 PM',
         members: 'Tom Jacob, Alex Jacob,Thomas Paul + 400',
-        type: "IMPORTANT"
+        type: "IMPORTANT",
+        term: term.mid
+
     },
     {
-        title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
+        title: 'Create WeFamily App',
         description: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
         last_active: 'Dec 03, 2022 15:00 PM',
         members: 'Vicky, Alex, Bob, William + 356',
-        type: "IMPORTANT"
+        type: "IMPORTANT",
+        term: term.long
+
     },
     {
         title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
         description: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
         last_active: 'Dec 03, 2022 15:00 PM',
         members: 'Tom Alex, Jacob Samuel, Sam, +12',
-        type: "IMPORTANT"
+        type: "IMPORTANT",
+        term: term.short
+
     },
     {
         title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
         description: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
         last_active: 'Dec 03, 2022 15:00 PM',
         members: 'Vicky, Alex, Bob, William + 10',
-        type: "IMPORTANT"
+        type: "IMPORTANT",
+        term: term.mid
+
     },
     {
         title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
         description: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
         last_active: 'Dec 03, 2022 15:00 PM',
         members: 'Tom Manuel, Jacob Augustin,Sam TOny +2',
-        type: "IMPORTANT"
+        type: "IMPORTANT",
+        term: term.long
+
     },
     {
         title: 'Le lorem ipsum est, en imprimerie, une suite de mots sans signification',
         description: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
         last_active: 'Dec 03, 2022 15:00 PM',
         members: 'Tom Alex,Jacob Mathews,Sam Tony',
-        type: "IMPORTANT"
+        type: "IMPORTANT",
+        term: term.short
+
     }
 ];
+
 
 
 
@@ -76,9 +98,45 @@ export default function TaskList({ navigation }: any) {
 
     const [value, setValue] = useState("");
     const [y, setY] = useState(0);
+    const [map, setMap] = useState(false);
     const offset = useRef(new Animated.Value(0)).current;
     const [OPACITY, setOPACITY] = useState(1);
     const HEADER_HEIGHT = 24.6 * h;
+    const scrollRef = useRef();
+
+
+
+    useLayoutEffect(() => {
+
+        navigation.setOptions({
+            headerStyle: {
+                backgroundColor: "white",
+            },
+
+            headerTitle: () => (
+                !map && <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Tasks</Text>),
+
+            headerLeft: () => (!map &&(
+                <TouchableOpacity onPress={() => toTop()} style={{marginLeft: "20%"}}>
+                    <MaterialCommunityIcons name="text-box-plus-outline" size={25} color="#5C567D" />
+                </TouchableOpacity>)
+            ),
+            headerRight: () => (
+                <TouchableOpacity onPress={() => setMap(!map)} style={{ flexDirection: "row", marginRight: "20%" }}>
+                    <Text style={{ color: "#499494" }}> {map && "Mid term"} ■</Text>
+                    <Text style={{ color: "#F37A72" }}> {map && "Short term"} ■</Text>
+                    <Text style={{ color: "#817C99" }}> {map && "Long term"} ■</Text>
+                </TouchableOpacity>
+            )
+        });
+    }, [navigation, map]);
+
+
+
+    const toTop = () => {
+        scrollRef.current.scrollToOffset({ animated: true, offset: 0 })
+    }
+
 
 
     const onScroll = (opacity: number) => {
@@ -90,6 +148,7 @@ export default function TaskList({ navigation }: any) {
             }
         })
     }
+
 
     const renderItem = ({ item }: any) => {
         return <TaskItem item={item} />;
@@ -138,6 +197,7 @@ export default function TaskList({ navigation }: any) {
         <View style={{ backgroundColor: "white" }}>
             <AnimatedHeader animValue={offset} />
             <FlatList
+                ref={scrollRef}
                 onScroll={Animated.event(
                     [{ nativeEvent: { contentOffset: { y: offset } } }],
                     {

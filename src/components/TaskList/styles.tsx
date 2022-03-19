@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
     },
     card: {
         width: "90%",
-        borderRadius: 12,
+        borderRadius: 8,
         marginVertical: "5%",
-        backgroundColor: "#E0F4F4"
+        //backgroundColor: "#E0F4F4"
         
     },
     cardView: {
