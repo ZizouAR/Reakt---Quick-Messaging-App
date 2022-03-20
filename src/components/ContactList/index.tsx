@@ -15,7 +15,7 @@ export default function CallsList({ navigation }: any) {
     const [selected, setSelected] = useState(users.results.slice(1, 3));
     const [suggested, setSuggested] = useState(users.results.slice(8, 33));
     const [recent, setRecent] = useState(users.results.slice(4, 6));
-    const [search, setSearch] = useState(users.results.slice(1, 2));
+    const [search, setSearch] = useState(users.results.slice(1, 1));
 
 
     const sections = [
@@ -34,6 +34,8 @@ export default function CallsList({ navigation }: any) {
     const onSelect = (item: any) => {
         if (!selected.includes(item)) setSelected(selected => [...selected, item])
         else Unselect(item)
+        setValue("");
+        setSearch([]);
     };
 
 
