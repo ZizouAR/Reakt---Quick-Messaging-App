@@ -1,27 +1,76 @@
 import React, { useState } from 'react';
-import { SectionList, View, ScrollView, TouchableOpacity } from 'react-native';
-import { Text, TouchableRipple } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { SectionList, View } from 'react-native';
+import { Text } from 'react-native-paper';
 import SearchBarSmall from '../../components/search/SearchBarSmall';
 import { tabBarStyle } from "../../components/navigator/BottomNavigator";
-
 import ContactItem from './ContactItem';
-import AppStyles from '../../config/styles';
-
 import { users } from './data';
 import styles from './styles';
+
+
 
 export default function CallsList({ navigation }: any) {
 
     const [value, setValue] = useState("");
+    const [selected, setSelected] = useState(users.results.slice(1, 3));
+    const [search, setSearch] = useState(users.results.slice(1, 1));
 
-    const renderItem = ({ item }: any) => {
-        return <ContactItem  item={item} />;
+
+    let recent = users.results.slice(4, 6);
+    let suggested = users.results.slice(8, 33);
+
+
+    const sections = [
+        { title: 'Search', data: search },
+        { title: 'Selected', data: selected },
+        { title: 'Recent', data: recent },
+        { title: 'Suggested', data: suggested }
+    ];
+
+
+    users.results.forEach(user => {
+        user.username = user.name.first + " " + user.name.last;
+    });
+
+    // select user
+    const onSelect = (item: any) => {
+        if (!selected.includes(item)) setSelected(selected => [...selected, item])
+        else Unselect(item)
     };
 
-    const onPress = () => {
-        console.log('Pressed!');
+
+    // unselect user
+    const Unselect = (user: any) => {
+        setSelected(selected.filter(item => user != item))
     };
+
+
+    // search
+    const onSearch = (search: string) => {
+        setValue(search);
+        setSearch(users.results.filter(item => item.username.toLowerCase().includes(search.toLowerCase())));
+        if(search == "") setSearch([]);
+    };
+
+
+
+    const renderItem = ({ item, section }: any) => {
+        item.selected = selected.includes(item);
+        //console.log(item.username);
+        return <ContactItem section={section.title} onSelect={onSelect} item={item} />;
+    };
+
+
+
+    const SortAlphabetically = () => {
+        const text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        [...text].forEach(title => {
+            const data = users.results.filter(item => item.name.title.charAt(0) == title)
+            sections.push({ title, data })
+        });
+    };
+
+
 
     const renderSectionHeader = ({ section: { title } }: any) => {
         return (
@@ -31,32 +80,6 @@ export default function CallsList({ navigation }: any) {
         );
     };
 
-    const renderHeader = () => {
-        return (
-            <TouchableOpacity
-                onPress={onPress}
-            >
-                <View style={styles.groupView}>
-                    <Icon
-                        size={28}
-                        style={styles.grpIcn}
-                        color={AppStyles.colors.accentColor}
-                        name="supervisor-account"
-                    />
-
-                    <Text style={styles.grpText}>Start Group Call</Text>
-                </View>
-            </TouchableOpacity>
-        );
-    };
-
-    let recent = users.results.slice(31, 33);
-    let suggested = users.results.slice(1, 30);
-
-    const data = [
-        { title: 'Recent', data: recent },
-        { title: 'Suggested', data: suggested }
-    ];
 
 
     const onScroll = (opacity: number) => {
@@ -72,17 +95,16 @@ export default function CallsList({ navigation }: any) {
     return (
         <View>
             <View style={styles.searchBar}>
-                <SearchBarSmall value={value} setValue={setValue}/>
+                <SearchBarSmall value={value} onSearch={onSearch} />
             </View>
             <SectionList
-                onScrollBeginDrag={() => onScroll(0.3)} 
+                onScrollBeginDrag={() => onScroll(0.3)}
                 onScrollEndDrag={() => onScroll(1)}
                 onMomentumScrollEnd={() => onScroll(1)}
                 renderItem={renderItem}
                 renderSectionHeader={renderSectionHeader}
-                sections={data}
+                sections={sections}
                 keyExtractor={(item, index) => item + index}
-                ListHeaderComponent={renderHeader}
             />
         </View>
     );

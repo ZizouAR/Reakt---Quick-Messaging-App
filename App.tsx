@@ -8,7 +8,6 @@ import { useGlobal, setGlobal } from 'reactn';
 import { LogBox } from 'react-native';
 
 // Components
-import NewMessage from './src/components/buttons/NewMessage';
 import BottomNavigator from './src/components/navigator/BottomNavigator';
 
 // Screens

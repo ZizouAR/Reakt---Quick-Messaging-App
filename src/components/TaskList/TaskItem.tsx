@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Card, Text } from 'react-native-paper';
-import { h, w } from "../../config/dimensions";
-
-
 import styles from './styles';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import AppStyles from '../../config/styles';
-
 
 
 

@@ -2,32 +2,23 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Card, Text } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
-
-export default class TaskItem extends Component {
-    onPress = () => {
-        alert('Pressed');
-    };
+export default function AddTask({ navigation, toggleNewTaskModal }: any) {
 
 
-
-    render() {
-
-        return (
-            <Card style={styles.card} onPress={this.onPress}>
-                <View style={styles.cardView}>
-                        <TouchableOpacity style={styles.addTask}>
-                            <Ionicons name="add" size={25} color="#5C567D" />
-                        </TouchableOpacity>
-                        <Text style={styles.description}>Add New Task</Text>
-                </View>
-            </Card>
-        );
-    }
+    return (
+        <Card style={styles.card} onPress={toggleNewTaskModal}>
+            <View style={styles.cardView}>
+                <TouchableOpacity style={styles.addTask}>
+                    <Ionicons name="add" size={25} color="#5C567D" />
+                </TouchableOpacity>
+                <Text style={styles.description}>Add New Task</Text>
+            </View>
+        </Card>
+    );
 }
 
 const styles = StyleSheet.create({

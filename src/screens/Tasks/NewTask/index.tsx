@@ -1,5 +1,5 @@
 //
-//  NewEvent
+//  NewTask
 //  events
 //
 //  Created by Abdelhamid Larachi.
@@ -7,22 +7,20 @@
 //
 
 import React, { useState } from 'react'
-import { KeyboardAvoidingView, ScrollView, StyleSheet, Switch, Text, TextInput, View, TouchableOpacity, Dimensions } from "react-native"
+import { ScrollView, StyleSheet, Switch, Text, TextInput, View, TouchableOpacity } from "react-native"
 import { h, w } from "../../../config/dimensions";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import InputAutoCompleteChips from "../../../components/Inputs/InputAutoCompleteChips";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AppStyles from '../../../config/styles';
 
 
 
-export default function NewEvent() {
+export default function NewTask() {
 
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('datetime');
   const [show, setShow] = useState(false);
-
 
 
 
@@ -49,113 +47,74 @@ export default function NewEvent() {
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={styles.contentScrollView}
-      >
-        <View style={{height: "100%"}}>
-      <View
-        style={styles.eventDetailsTitleView}>
-        <TextInput
-          autoCorrect={false}
-          placeholder="Event title"
-          maxLength={100}
-          style={styles.titleTextInput}
-          />
-      </View>
-      {/*<Text>selected: {date.toLocaleString()}</Text>*/}
-      <View
-        style={styles.timeView}>
+    >
+      <View style={{ height: "100%" }}>
         <View
-          style={styles.eventDetailsDetailNineView}>
-          <Ionicons name="time-outline" color="gray" size={23} />
-          <Text
-            style={styles.addParticipantsEightText}>All day</Text>
-          <Switch style={styles.switchAllDay} />
-        </View>
-        <View
-          style={styles.eventDetailsDetailEightView}>
-          <Text
-            style={styles.addParticipantsSevenText}>Starts</Text>
-          <DateTimePicker
-            style={styles.addParticipantsSevenTextButton}
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            onChange={onChange}
+          style={styles.eventDetailsTitleView}>
+          <TextInput
+            autoCorrect={false}
+            placeholder="Task title"
+            maxLength={100}
+            style={styles.titleTextInput}
           />
         </View>
+        {/*<Text>selected: {date.toLocaleString()}</Text>*/}
         <View
-          style={styles.eventDetailsDetailSevenView}>
-          <Text
-            style={styles.addParticipantsSixText}>Ends</Text>
-          <DateTimePicker
-            style={styles.addParticipantsSevenTextButton}
-            testID="dateTimePicker"
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            onChange={onChange}
-          />
+          style={styles.timeView}>
+          <View
+            style={styles.eventDetailsDetailEightView}>
+            <Text
+              style={styles.addParticipantsSevenText}>Starts</Text>
+            <DateTimePicker
+              style={styles.addParticipantsSevenTextButton}
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              onChange={onChange}
+            />
+          </View>
+          <View
+            style={styles.eventDetailsDetailSevenView}>
+            <Text
+              style={styles.addParticipantsSixText}>Ends</Text>
+            <DateTimePicker
+              style={styles.addParticipantsSevenTextButton}
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              onChange={onChange}
+            />
+          </View>
         </View>
-      </View>
-      <View
-        style={styles.eventDetailsDetailFiveView}>
-        <Ionicons style={{marginLeft: "5%"}} name="pricetags-outline" color="gray" size={23} />
-        <ScrollView
-          horizontal={true}
-          style={styles.eventOptionComponentsTitleScrollView}>
-          <InputAutoCompleteChips tags={["meeting"]} placeholder={"#"} autoFocus={false} />
-        </ScrollView>
-      </View>
-      <View>
-      <View
-        style={styles.eventDetailsDetailFourView}>
-        <Ionicons name="location-outline" color="gray" size={23} />
-        <TextInput
-          returnKeyType="done"
-          autoCorrect={false}
-          placeholder="Add Location"
-          maxLength={100}
-          style={styles.addLocation} />
-      </View>
-      {/*
-      <View
-        style={styles.eventDetailsDetailTwoView}>
-        <Ionicons name="people-outline" color="gray" size={23} />
-        <TextInput
-          returnKeyType="done"
-          autoCorrect={false}
-          placeholder="Add Members"
-          maxLength={400}
-          style={styles.addParticipantsTwoText} />
-      </View>
-      */}
+        <View>
 
-      <View
-        style={styles.eventDetailsDetailView}>
-        <MaterialIcons name="notes" color="gray" size={23} />
-        <TextInput
-          returnKeyType="done"
-          autoCorrect={false}
-          placeholder="Add Description"
-          maxLength={400}
-          style={styles.addDescription} />
-      </View>
+          <View
+            style={styles.descriptionView}>
+            <MaterialIcons name="notes" color="gray" size={23} />
+            <TextInput
+              returnKeyType="done"
+              autoCorrect={false}
+              placeholder="Add Description"
+              maxLength={400}
+              multiline
+              style={styles.addDescription} />
+          </View>
 
-      <View>
-        <TouchableOpacity style={styles.circle}>
-        <Ionicons name="checkmark" style={{alignSelf: "center"}} color={AppStyles.colors.bleu} size={30} />
-        </TouchableOpacity>
-        
-        
-      </View>
-      </View>
+          <View>
+            <TouchableOpacity style={styles.circle}>
+              <Ionicons name="checkmark" style={{ alignSelf: "center" }} color={AppStyles.colors.bleu} size={30} />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </ScrollView>
   </View>
 }
 
 const styles = StyleSheet.create({
-  
+
   container: {
     flex: 1,
     justifyContent: 'flex-end'
@@ -171,7 +130,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     justifyContent: "center",
   },
-  
+
 
   newEventView: {
     flex: 1,
@@ -491,12 +450,16 @@ const styles = StyleSheet.create({
     width: "75%",
     fontSize: 16
   },
-  eventDetailsDetailView: {
+  descriptionView: {
     backgroundColor: "transparent",
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "center",
-    marginTop: "8%"
+    marginTop: "8%",
+    height: "50%",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 8,
+    padding: "5%"
   },
   iconsEventParticipantsCopy3Image: {
     resizeMode: "center",
@@ -510,8 +473,8 @@ const styles = StyleSheet.create({
     fontFamily: "ArialMT",
     fontStyle: "normal",
     fontWeight: "normal",
-    textAlign: "center",
-    width: "75%",
+    textAlign: "left",
+    width: "80%",
     marginLeft: "10%",
     fontSize: 16
   },

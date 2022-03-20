@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { TouchableRipple, Text } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import AppStyles from '../../config/styles'
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
-
 
 export default class ContactItem extends Component {
 
 
-    static propTypes: {
-        section: PropTypes.Requireable<object>;
-        name: PropTypes.Requireable<object>;
-        picture: PropTypes.Requireable<object>;
-        login: PropTypes.Requireable<object>;
-        item: PropTypes.Requireable<object>;
-        onSelect: PropTypes.Requireable<any>;
+    onPress = () => {
+        console.log('Pressed');
     };
 
+    static propTypes: { name: PropTypes.Requireable<object>; picture: PropTypes.Requireable<object>; login: PropTypes.Requireable<object>; item: PropTypes.Requireable<object>; };
 
     render() {
-        const { name, picture, login, selected } = this.props.item;
+        const { name, picture, login } = this.props.item;
 
         return (
-            <TouchableOpacity onPress={() => this.props.onSelect(this.props.item)}>
+            <TouchableOpacity onPress={this.onPress}>
                 <View style={styles.item}>
                     <Avatar size={48} uri={picture.thumbnail} />
                     <View style={styles.nameView}>
@@ -40,15 +35,25 @@ export default class ContactItem extends Component {
                         </Text>
                         <Text style={styles.sub}>@{login.username}</Text>
                     </View>
-                    <TouchableOpacity onPress={() => this.props.onSelect(this.props.item)} style={styles.icon} >
+                    <TouchableOpacity
+                        onPress={this.onPress}
+                        style={styles.icon}
+                    >
                         <Icon
                             size={24}
-                            color={selected ? AppStyles.colors.accentColor : "silver"}
-                            name={selected ? "account-check" : "account-check-outline"}
+                            color={AppStyles.colors.accentColor}
+                            name="call"
                         />
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={this.onPress}
+                        style={styles.icon}
+                    >
+                        <FontAwesome5 name="tasks" size={24} color={AppStyles.colors.accentColor} />
+
+                    </TouchableOpacity>
                 </View>
-            </TouchableOpacity >
+            </TouchableOpacity>
         );
     }
 }
@@ -57,6 +62,5 @@ ContactItem.propTypes = {
     name: PropTypes.object,
     picture: PropTypes.object,
     login: PropTypes.object,
-    item: PropTypes.object,
-    onSelect: PropTypes.object
+    item: PropTypes.object
 };

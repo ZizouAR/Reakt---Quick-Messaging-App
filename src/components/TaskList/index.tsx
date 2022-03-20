@@ -1,15 +1,14 @@
 import React, { Component, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { FlatList, View, Animated, Text } from 'react-native';
 import TaskItem from './TaskItem';
-import AddItem from './AddItem';
+import AddTask from './AddTask';
 import styles from './styles';
-import SearchBarSmall from '../../components/search/SearchBarSmall';
+import SearchBarSmall from '../search/SearchBarSmall';
 import { tabBarStyle } from '../navigator/BottomNavigator';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { h, w, HEIGHT, WIDTH } from '../../config/dimensions';
+import { h, w } from '../../config/dimensions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 
 
 const enum term {
@@ -94,7 +93,8 @@ const data = [
 
 
 
-export default function TaskList({ navigation }: any) {
+export default function TaskList({ navigation, toggleNewTaskModal }: any) {
+
 
     const [value, setValue] = useState("");
     const [y, setY] = useState(0);
@@ -181,15 +181,13 @@ export default function TaskList({ navigation }: any) {
                             width: "100%",
                             paddingHorizontal: "5%"
                         }}>
-
                             <SearchBarSmall value={value} setValue={setValue} />
                         </View>
-                        <AddItem />
+                        <AddTask  toggleNewTaskModal={toggleNewTaskModal}/>
                     </View>}
             </Animated.View>
         );
     };
-
 
 
 
