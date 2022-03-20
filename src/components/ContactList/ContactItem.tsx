@@ -25,8 +25,8 @@ export default class ContactItem extends Component {
 
     render() {
         const { name, picture, login, selected } = this.props.item;
-
         return (
+            !(this.props.section != "Selected" && selected) &&
             <TouchableOpacity onPress={() => this.props.onSelect(this.props.item)}>
                 <View style={styles.item}>
                     <Avatar size={48} uri={picture.thumbnail} />

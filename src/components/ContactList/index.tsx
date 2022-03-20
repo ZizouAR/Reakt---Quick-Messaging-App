@@ -13,11 +13,9 @@ export default function CallsList({ navigation }: any) {
 
     const [value, setValue] = useState("");
     const [selected, setSelected] = useState(users.results.slice(1, 3));
-    const [search, setSearch] = useState(users.results.slice(1, 1));
-
-
-    let recent = users.results.slice(4, 6);
-    let suggested = users.results.slice(8, 33);
+    const [suggested, setSuggested] = useState(users.results.slice(8, 33));
+    const [recent, setRecent] = useState(users.results.slice(4, 6));
+    const [search, setSearch] = useState(users.results.slice(1, 2));
 
 
     const sections = [
