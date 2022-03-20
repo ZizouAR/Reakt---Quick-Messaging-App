@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { SectionList, View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { SectionList, View, TouchableOpacity } from 'react-native';
+import { Button, Text } from 'react-native-paper';
 import SearchBarSmall from '../../components/search/SearchBarSmall';
 import { tabBarStyle } from "../../components/navigator/BottomNavigator";
 import ContactItem from './ContactItem';
 import { users } from './data';
 import styles from './styles';
+import Modal from '../modal/Modal';
+import AppStyles from '../../config/styles';
 
 
 
@@ -17,6 +19,20 @@ export default function CallsList({ navigation }: any) {
     const [recent, setRecent] = useState(users.results.slice(4, 6));
     const [search, setSearch] = useState(users.results.slice(1, 1));
 
+
+    const [modal, setModal] = useState(false);
+
+
+    const toggleNewTaskModal = () => {
+        setModal(!modal);
+    }
+
+
+    const setSelectedContacts = () => {
+        console.log("selecttteedd")
+        //setModal(!modal);
+        // return selected
+    }
 
     const sections = [
         { title: 'Search', data: search },
@@ -49,7 +65,7 @@ export default function CallsList({ navigation }: any) {
     const onSearch = (search: string) => {
         setValue(search);
         setSearch(users.results.filter(item => item.username.toLowerCase().includes(search.toLowerCase())));
-        if(search == "") setSearch([]);
+        if (search == "") setSearch([]);
     };
 
 
@@ -93,19 +109,50 @@ export default function CallsList({ navigation }: any) {
 
 
     return (
-        <View>
-            <View style={styles.searchBar}>
-                <SearchBarSmall value={value} onSearch={onSearch} />
-            </View>
-            <SectionList
-                onScrollBeginDrag={() => onScroll(0.3)}
-                onScrollEndDrag={() => onScroll(1)}
-                onMomentumScrollEnd={() => onScroll(1)}
-                renderItem={renderItem}
-                renderSectionHeader={renderSectionHeader}
-                sections={sections}
-                keyExtractor={(item, index) => item + index}
-            />
+        <View style={{ flex: 1 }}>
+            <Button onPress={toggleNewTaskModal}>Select Contacts</Button>
+            <Modal title="SELECT CONTACT" visibility={modal} setVisibility={toggleNewTaskModal}>
+                <View style={{ flex: 1, height: "100%", width: "100%" }}>
+                    <View style={[styles.searchBar, { width: "100%", alignSelf: "center" }]}>
+                        <SearchBarSmall value={value} onSearch={onSearch} />
+                    </View>
+
+
+                    <SectionList
+                        onScrollBeginDrag={() => onScroll(0.3)}
+                        onScrollEndDrag={() => onScroll(1)}
+                        onMomentumScrollEnd={() => onScroll(1)}
+                        renderItem={renderItem}
+                        renderSectionHeader={renderSectionHeader}
+                        sections={sections}
+                        keyExtractor={(item, index) => item + index}
+                    />
+
+                    <TouchableOpacity style={{
+                        position: "absolute",
+                        bottom: 0,
+                        marginBottom: "12%",
+                        backgroundColor: AppStyles.colors.lightBleu,
+                        width: "80%",
+                        alignSelf: "center",
+                        alignContent: "center",
+                        padding: "7%",
+                        borderRadius: "8",
+
+                    }}
+                        onPress={setSelectedContacts}>
+                        <Text style={{
+                            alignSelf: "center",
+                            color: AppStyles.colors.bleu,
+                            fontSize: 16,
+                            fontWeight: "bold"
+                        }}>SELECT</Text>
+                    </TouchableOpacity>
+
+
+                </View>
+            </Modal>
         </View>
+
     );
 }
