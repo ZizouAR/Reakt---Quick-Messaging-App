@@ -19,6 +19,7 @@ import ContactsPicker from '../../../components/ContactsPicker';
 export default function NewTask() {
 
   const [date, setDate] = useState(new Date(1598051730000));
+  const [currentSelected, setCurrentSelected] = useState([]);
 
 
   const onChange = (event: any, selectedDate: any) => {
@@ -28,7 +29,8 @@ export default function NewTask() {
 
 
   const onSelectDone = (users: any) => {
-    console.log("selected : ")
+    console.log("currentSelected : ")
+    setCurrentSelected(users);
     console.log(users)
   }
 
@@ -84,7 +86,7 @@ export default function NewTask() {
           <Text
             style={styles.assignToText}>Assign to</Text>
           <View style={styles.AvatarsView}>
-            <ContactsPicker onSelectDone={onSelectDone} />
+            <ContactsPicker currentSelected={currentSelected} onSelectDone={onSelectDone} />
           </View>
         </View>
 

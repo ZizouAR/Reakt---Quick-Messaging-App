@@ -9,10 +9,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 
-export default function ContactList({onSelectDone}: any) {
+export default function ContactList({onSelectDone, toggleNewTaskModal, currentSelected}: any) {
 
     const [value, setValue] = useState("");
-    const [selected, setSelected] = useState(users.results.slice(1, 1));
+    const [selected, setSelected] = useState(currentSelected);
     const [suggested, setSuggested] = useState(users.results.slice(8, 33));
     const [recent, setRecent] = useState(users.results.slice(4, 6));
     const [searched, setSearched] = useState(users.results.slice(1, 1));
@@ -86,7 +86,12 @@ export default function ContactList({onSelectDone}: any) {
         setSelectButtonOpacity(opacity)
     }
 
-    
+
+    const onDoneSelecting = (items: any) => {
+        toggleNewTaskModal();
+        onSelectDone(items);
+    }
+
 
     return (
         <View style={{ flex: 1, height: "100%", width: "100%" }}>
@@ -120,7 +125,7 @@ export default function ContactList({onSelectDone}: any) {
                 }}>
                     <TouchableOpacity
                         disabled={selected.length == 0}
-                        onPress={() => onSelectDone(selected)}>
+                        onPress={() => onDoneSelecting(selected)}>
                         <MaterialCommunityIcons name="account-multiple-check" style={{ alignSelf: "center" }} color={AppStyles.colors.bleu} size={30} />
                     </TouchableOpacity>
                 </View>

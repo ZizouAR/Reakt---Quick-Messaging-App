@@ -37,7 +37,9 @@ export default class TaskItem extends Component {
                         <View style={styles.descriptionView}>
                             <Text style={[styles.description, { color: palette[item.term].text }]}>{item.description}</Text>
                         </View>
+                        <View style={{flex :1, alignSelf: "flex-start", marginTop: "5%"}}>
                         <AvatarGroup position="absolute" max={3} />
+                        </View>
                     </View>
                 </View>
             </Card>
