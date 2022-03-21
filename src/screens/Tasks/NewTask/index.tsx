@@ -7,21 +7,18 @@
 //
 
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, Switch, Text, TextInput, View, TouchableOpacity } from "react-native"
-import { h, w } from "../../../config/dimensions";
+import { ScrollView, StyleSheet, Switch, Text, TextInput, View, TouchableOpacity, Button } from "react-native"
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AppStyles from '../../../config/styles';
+import ContactsPicker from '../../../components/ContactsPicker';
 
 
 
 export default function NewTask() {
 
   const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('datetime');
-  const [show, setShow] = useState(false);
-
 
 
   const onChange = (event: any, selectedDate: any) => {
@@ -30,16 +27,9 @@ export default function NewTask() {
   };
 
 
-  const onSwitchOffValueChanged = () => {
-
-  }
-
-  const onRightIconPressed = () => {
-
-  }
-
-  const onLeftIconPressed = () => {
-
+  const onSelectDone = (users: any) => {
+    console.log("selected : ")
+    console.log(users)
   }
 
 
@@ -62,32 +52,42 @@ export default function NewTask() {
         <View
           style={styles.timeView}>
           <View
-            style={styles.eventDetailsDetailEightView}>
+            style={styles.datetimeView}>
             <Text
               style={styles.addParticipantsSevenText}>Starts</Text>
             <DateTimePicker
-              style={styles.addParticipantsSevenTextButton}
+              style={styles.datetime}
               testID="dateTimePicker"
               value={date}
-              mode={mode}
+              mode={"datetime"}
               is24Hour={true}
               onChange={onChange}
             />
           </View>
           <View
-            style={styles.eventDetailsDetailSevenView}>
+            style={styles.datetimeView}>
             <Text
-              style={styles.addParticipantsSixText}>Ends</Text>
+              style={styles.addParticipantsSevenText}>Ends</Text>
             <DateTimePicker
-              style={styles.addParticipantsSevenTextButton}
+              style={styles.datetime}
               testID="dateTimePicker"
               value={date}
-              mode={mode}
+              mode={"datetime"}
               is24Hour={true}
               onChange={onChange}
             />
           </View>
         </View>
+
+        <View
+          style={styles.members}>
+          <Text
+            style={styles.assignToText}>Assign to</Text>
+          <View style={styles.AvatarsView}>
+            <ContactsPicker onSelectDone={onSelectDone} />
+          </View>
+        </View>
+
         <View>
 
           <View
@@ -103,7 +103,7 @@ export default function NewTask() {
           </View>
 
           <View>
-            <TouchableOpacity style={styles.circle}>
+            <TouchableOpacity style={styles.done}>
               <Ionicons name="checkmark" style={{ alignSelf: "center" }} color={AppStyles.colors.bleu} size={30} />
             </TouchableOpacity>
           </View>
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
 
-  circle: {
-    marginTop: "20%",
+  done: {
+    marginTop: "10%",
     marginRight: "5%",
     width: 60,
     height: 60,
@@ -140,19 +140,18 @@ const styles = StyleSheet.create({
     marginBottom: "10%"
   },
 
-  switchAllDay: {
-    position: "absolute",
-    right: 0
-  },
 
   contentScrollView: {
     flex: 1,
     height: "100%",
   },
+
   eventDetailsTitleView: {
     backgroundColor: "transparent",
     justifyContent: "center",
     alignItems: "flex-start",
+    marginTop: "15%",
+    marginBottom: "8%"
   },
 
   titleTextInput: {
@@ -164,35 +163,19 @@ const styles = StyleSheet.create({
     textAlign: "left",
     padding: 0,
     width: "100%",
-    marginVertical: "20%"
   },
 
   timeView: {
     marginTop: "5%",
     marginBottom: "10%",
   },
-  eventDetailsDetailNineView: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: "5%"
-  },
 
-  addParticipantsEightText: {
-    color: "rgb(51, 51, 51)",
-    fontFamily: "ArialMT",
-    fontSize: 16,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "left",
-    marginLeft: "5%",
-  },
-
-  eventDetailsDetailEightView: {
+  members: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
-    marginTop: "12%",
-    marginBottom: "20%"
+    width: "100%",
+    flex: 1
   },
   addParticipantsSevenText: {
     color: "rgb(51, 51, 51)",
@@ -200,274 +183,52 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontStyle: "normal",
     fontWeight: "normal",
-    position: "absolute",
-    left: 0,
+    alignSelf: "center",
   },
-  addParticipantsSevenTextButton: {
-    position: "absolute",
-    right: 0,
-    width: "100%"
-  },
-  eventOptionComponentsAccesoryTimeTextInput: {
+
+  assignToText: {
     color: "rgb(51, 51, 51)",
     fontFamily: "ArialMT",
     fontSize: 16,
     fontStyle: "normal",
     fontWeight: "normal",
-    textAlign: "right",
-    paddingTop: "2%",
-    width: "30%",
+    alignSelf: "center",
+    flex: 1,
   },
-  eventDetailsDetailSevenView: {
+
+  AvatarsView: {
+    alignSelf: "center",
+    justifyContent: "center",
+    flex: 1,
+    marginLeft: "20%"
+  },
+
+  datetime: {
+    alignSelf: "flex-end",
+    width: "100%",
+    flex: 1,
+  },
+
+  datetimeView: {
     backgroundColor: "transparent",
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
     marginBottom: "4%"
   },
-  addParticipantsSixText: {
-    color: "rgb(51, 51, 51)",
-    fontFamily: "ArialMT",
-    fontSize: 16,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    left: 0,
-    position: "absolute",
-    backgroundColor: "transparent",
-  },
-  eventOptionComponentsAccesoryTimeTwoView: {
-    backgroundColor: "transparent",
-    width: "30%",
-    height: 5.7 * h,
-    justifyContent: "center",
-    alignItems: "flex-end",
-  },
-  pmTwoTextInput: {
-    color: "rgb(51, 51, 51)",
-    fontFamily: "ArialMT",
-    fontSize: 16,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "right",
-    padding: 0,
-  },
-  eventDetailsDetailSixView: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  addParticipantsFiveText: {
-    color: "rgb(51, 51, 51)",
-    fontFamily: "ArialMT",
-    fontSize: 16,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    left: 0,
-    position: "absolute",
 
-  },
-  eventOptionComponentsAccesoryTimeView: {
-    width: "30%",
-    justifyContent: "center",
-    alignItems: "flex-end",
-  },
-  pmTextInput: {
-    color: "rgb(51, 51, 51)",
-    fontFamily: "ArialMT",
-    fontSize: 16,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "right",
-    backgroundColor: "transparent",
-  },
-  tagsView: {
-    backgroundColor: "transparent",
-    height: 11.3 * h,
-    marginTop: 2.7 * h,
-  },
-  eventDetailsDetailFiveView: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  iconsEventParticipantsCopy3FiveImage: {
-    resizeMode: "center",
-    backgroundColor: "transparent",
-    width: 6.9 * w,
-    height: 3.2 * h,
-    marginLeft: 8.5 * w,
-  },
-  eventOptionComponentsTitleScrollView: {
-    width: "100%",
-    marginLeft: "20%"
-  },
-  enventTagView: {
-    backgroundColor: "rgb(207, 236, 255)",
-    borderRadius: 16,
-    width: 25.3 * w,
-    height: 3.9 * h,
-    justifyContent: "center",
-  },
-  meetingText: {
-    color: "rgb(51, 51, 51)",
-    fontFamily: "ArialMT",
-    fontSize: 1.7 * h,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "center",
-    backgroundColor: "transparent",
-    marginLeft: 5.9 * w,
-    marginRight: 5.9 * w,
-  },
-  enventTagCopy2View: {
-    backgroundColor: "rgb(207, 236, 255)",
-    borderRadius: 16,
-    width: 18.1 * w,
-    height: 3.9 * h,
-    justifyContent: "flex-end",
-  },
-  meetingThreeText: {
-    color: "rgb(51, 51, 51)",
-    fontFamily: "ArialMT",
-    fontSize: 1.7 * h,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "center",
-    backgroundColor: "transparent",
-    marginLeft: 3.7 * w,
-    marginRight: 3.7 * w,
-  },
-  enventTagCopyView: {
-    backgroundColor: "rgb(207, 236, 255)",
-    borderRadius: 16,
-    width: 22.7 * w,
-    height: 3.9 * h,
-    justifyContent: "flex-end",
-  },
-  meetingTwoText: {
-    color: "rgb(51, 51, 51)",
-    fontFamily: "ArialMT",
-    fontSize: 1.7 * h,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "center",
-    backgroundColor: "transparent",
-    marginLeft: 4.8 * w,
-    marginRight: 4.8 * w,
-  },
-  addParticipantsButton: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 0,
-    alignSelf: "flex-start",
-    width: 20 * w,
-    height: 2.7 * h,
-    marginLeft: 30.1 * w,
-    marginBottom: 1.5 * h,
-  },
-  addParticipantsButtonText: {
-    color: "rgb(141, 146, 166)",
-    fontFamily: "ArialMT",
-    fontSize: 2 * h,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "left",
-  },
-  addParticipantsButtonImage: {
-    resizeMode: "contain",
-    marginRight: 2.7 * w,
-  },
-  eventDetailsDetailFourView: {
-    backgroundColor: "transparent",
-    marginTop: "10%",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  iconsEventParticipantsCopy3FourImage: {
-    backgroundColor: "transparent",
-    resizeMode: "center",
-    width: 4.3 * w,
-    height: 2.7 * h,
-    marginLeft: 9.6 * w,
-  },
-  addLocation: {
-    color: "rgb(141, 146, 166)",
-    fontFamily: "ArialMT",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "center",
-    width: "75%",
-    marginLeft: "10%",
-    fontSize: 16
-  },
-  eventDetailsDetailThreeView: {
-    backgroundColor: "transparent",
-    height: 5.7 * h,
-    marginBottom: 2.7 * h,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  iconsEventParticipantsCopy3ThreeImage: {
-    backgroundColor: "transparent",
-    resizeMode: "center",
-    width: 4.3 * w,
-    height: 2.5 * h,
-    marginLeft: 9.6 * w,
-  },
-  addParticipantsThreeText: {
-    backgroundColor: "transparent",
-    color: "rgb(141, 146, 166)",
-    fontFamily: "ArialMT",
-    fontSize: 2 * h,
-    fontStyle: "normal",
-    fontWeight: "normal",
-    textAlign: "left",
-    marginRight: 51.5 * w,
-  },
-  eventDetailsDetailTwoView: {
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: "8%",
-  },
-  iconsEventParticipantsCopy3TwoImage: {
-    resizeMode: "center",
-    backgroundColor: "transparent",
-    width: 6.4 * w,
-    height: 1.7 * h,
-    marginLeft: 8.5 * w,
-  },
-  addParticipantsTwoText: {
-    color: "rgb(141, 146, 166)",
-    fontFamily: "ArialMT",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    backgroundColor: "transparent",
-    textAlign: "center",
-    width: "75%",
-    fontSize: 16
-  },
   descriptionView: {
     backgroundColor: "transparent",
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "center",
-    marginTop: "8%",
+    marginTop: "15%",
     height: "50%",
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
     padding: "5%"
   },
-  iconsEventParticipantsCopy3Image: {
-    resizeMode: "center",
-    backgroundColor: "transparent",
-    width: 4.3 * w,
-    height: 2.1 * h,
-    marginLeft: 9.6 * w,
-  },
+
   addDescription: {
     color: "rgb(141, 146, 166)",
     fontFamily: "ArialMT",

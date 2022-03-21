@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 
 import AppStyles from '../../config/styles';
-import CallsList from '../../components/ContactList';
+import CallsList from '../../components/ContactsList';
 import { StyleSheet } from 'react-native';
 
 

@@ -5,7 +5,7 @@ import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 
 
-const ModalComponent = ({ title, visibility, children, setVisibility, modalLevel }: Props) => {
+const ModalComponent = ({ title, visibility, children, setVisibility, modalLevel, padding }: Props) => {
     const level = modalLevel || 0;
 
     return (
@@ -14,7 +14,7 @@ const ModalComponent = ({ title, visibility, children, setVisibility, modalLevel
             transparent={true}
             visible={visibility}>
             <ModalHeader title={title} close={setVisibility} modalLevel={level}/>      
-            <ModalBody>    
+            <ModalBody padding={padding}>    
                 {children}
             </ModalBody>
             <KeyboardSpacer/>
@@ -28,6 +28,7 @@ interface Props {
     visibility: boolean,
     title: string,
     setVisibility: any,
+    padding: boolean,
     modalLevel?: number
 }
 

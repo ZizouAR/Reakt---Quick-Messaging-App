@@ -2,28 +2,25 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 
-const ModalBody = ({ children }:Props) => {
+const ModalBody = ({ children, padding }: Props) => {
     return (
-        <View style={styles.container}>
+        <View style={{
+            flex: 1,
+            justifyContent: "flex-end",
+            alignItems: "center",
+            paddingRight: padding ? 16 : 10,
+            paddingLeft: padding ? 16 : 10,
+            backgroundColor: "#FFF",
+            height: "100%"
+        }}>
             {children}
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "flex-end",
-        alignItems: "center", 
-        paddingRight: 16,
-        paddingLeft: 16,
-        backgroundColor: "#FFF",
-        height: "100%"
-    }
-});
-
 interface Props {
-    children: any
+    children: any,
+    padding: boolean
 }
 
 export default ModalBody;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { TouchableRipple, Text } from 'react-native-paper';
+import { View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppStyles from '../../config/styles'
 import PropTypes from 'prop-types';
