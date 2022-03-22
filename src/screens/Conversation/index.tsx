@@ -9,7 +9,7 @@
 import MessageSent from "../../components/message/MessageSent"
 import MessageReceived from "../../components/message/MessageReceived"
 import React, { useState } from 'react';
-import { Linking, Alert, FlatList, Image, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard, LayoutAnimation, Platform } from "react-native"
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard, LayoutAnimation, Platform } from "react-native"
 import { h, w } from "../../config/dimensions";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,7 +17,6 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Modal from '../../components/modal/Modal';
 import UserProfile from "./UserProfile";
-import { Button, Menu, Divider, Provider } from 'react-native-paper';
 
 
 const Conversation = ({ navigation, route }: Props) => {
@@ -263,7 +262,7 @@ const Conversation = ({ navigation, route }: Props) => {
 
 			{Platform.OS === 'ios' ? <KeyboardSpacer /> : null}
 		</View>
-		<Modal title="" visibility={modalOpen} setVisibility={setModalOpen}>
+		<Modal title="" visibility={modalOpen} ToggleModal={setModalOpen}>
 			<UserProfile contact={route.params.contact} />
 		</Modal>
 	</View>

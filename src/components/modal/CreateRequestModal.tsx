@@ -36,6 +36,7 @@ export default function CreateRequestModal() {
     }
 
 
+    
   return <View>
   <FAB
     style={styles.fab}
@@ -46,7 +47,7 @@ export default function CreateRequestModal() {
     onPress={() => setModalOpen(true)}
       />
       
-      <Modal title="✏️ Create Request" visibility={modalOpen} setVisibility={setModalOpen}>
+      <Modal title="✏️ Create Request" visibility={modalOpen} ToggleModal={setModalOpen}>
 
       <View style={styles.container}>
 

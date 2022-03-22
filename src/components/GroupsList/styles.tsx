@@ -6,20 +6,36 @@ const styles = StyleSheet.create({
     card: {
         width: Metrics.screenWidth / 2.5,
         height: Metrics.screenHeight / 3.6,
-        margin: 5
+        margin: "2%",
+        marginTop: "15%",
+        borderRadius: 8,
     },
     cardView: {
-        width: Metrics.screenWidth / 2.5,
-        height: Metrics.screenHeight / 3.6,
+        flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center'
     },
     footer: {
-        width: Metrics.screenWidth / 2.5 - 16,
-        paddingVertical: 22,
+        width: "80%",
+        paddingVertical: "15%",
         alignItems: 'center',
         borderTopWidth: StyleSheet.hairlineWidth,
         borderTopColor: AppStyles.colors.separator
+    },
+    actions: {
+        width: "100%",
+        paddingVertical: "15%",
+        borderTopWidth: StyleSheet.hairlineWidth,
+        borderTopColor: AppStyles.colors.separator,
+        flexDirection: 'row',
+        justifyContent: "space-evenly",
+        alignItems: "center",
+    },
+    delete: {
+        flexDirection: 'row',
+    },
+    edit: {
+        flexDirection: 'row',
     },
     nameView: {
         flex: 1,

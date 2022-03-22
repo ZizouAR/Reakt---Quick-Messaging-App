@@ -20,7 +20,7 @@ const ModalBody = ({ children, padding }: Props) => {
 
 interface Props {
     children: any,
-    padding: boolean
+    padding?: boolean
 }
 
 export default ModalBody;

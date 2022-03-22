@@ -2,7 +2,7 @@ import { useTheme } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Button, SafeAreaView } from 'react-native';
 
-const ModalHeader = ({ title, close, modalLevel }:Props) => {
+const ModalHeader = ({ title, RightHeader, LeftHeader, ToggleModal, modalLevel }: Props) => {
     const level = modalLevel ? modalLevel * 25 : 10;
     const theme = useTheme();
 
@@ -12,8 +12,15 @@ const ModalHeader = ({ title, close, modalLevel }:Props) => {
                 <View style={[styles.container, { backgroundColor: theme.colors.card, marginTop: level }]}>
                     <Text style={{ fontSize: 14, fontWeight: "bold" }}>{title}</Text>
                     <View style={{ right: 16, position: "absolute" }}>
-                        <Button title="Close" onPress={close}/>
+                       {RightHeader ?  <RightHeader/> : 
+                       <Button title={"Close"} onPress={ToggleModal} />
+                       }
                     </View>
+                    {LeftHeader &&
+                        <View style={{ left: 16, position: "absolute" }}>
+                            <LeftHeader/>
+                        </View>
+                    }
                 </View>
             </SafeAreaView>
         </>
@@ -23,13 +30,13 @@ const ModalHeader = ({ title, close, modalLevel }:Props) => {
 const styles = StyleSheet.create({
     container: {
         shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
         padding: 16,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
@@ -41,7 +48,9 @@ const styles = StyleSheet.create({
 
 interface Props {
     title: string,
-    close: any,
+    ToggleModal: any,
+    RightHeader: any,
+    LeftHeader?: any,
     modalLevel?: number
 }
 

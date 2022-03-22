@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, Modal, KeyboardAvoidingView, Platform } from 'react-native';
+import { Modal } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 
 
-const ModalComponent = ({ title, visibility, children, setVisibility, modalLevel, padding }: Props) => {
+const ModalComponent = ({ title, visibility, children, RightHeader, LeftHeader, ToggleModal, modalLevel, padding }: Props) => {
     const level = modalLevel || 0;
 
     return (
@@ -13,11 +13,11 @@ const ModalComponent = ({ title, visibility, children, setVisibility, modalLevel
             animationType="slide"
             transparent={true}
             visible={visibility}>
-            <ModalHeader title={title} close={setVisibility} modalLevel={level}/>      
-            <ModalBody padding={padding}>    
+            <ModalHeader title={title} ToggleModal={ToggleModal} RightHeader={RightHeader} LeftHeader={LeftHeader}  modalLevel={level} />
+            <ModalBody padding={padding}>
                 {children}
             </ModalBody>
-            <KeyboardSpacer/>
+            <KeyboardSpacer />
         </Modal>
     )
 }
@@ -27,9 +27,11 @@ interface Props {
     children: any,
     visibility: boolean,
     title: string,
-    setVisibility: any,
-    padding: boolean,
-    modalLevel?: number
+    ToggleModal: any,
+    padding?: boolean,
+    modalLevel?: number,
+    RightHeader?: any,
+    LeftHeader?: any,
 }
 
 export default ModalComponent;

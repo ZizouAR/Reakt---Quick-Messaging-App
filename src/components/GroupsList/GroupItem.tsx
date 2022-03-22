@@ -1,37 +1,95 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Card, Text } from 'react-native-paper';
+import React, { useState, useRef } from 'react';
+import { View, Text, Animated } from 'react-native';
+import { Card } from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
 import styles from './styles';
 import PropTypes from 'prop-types';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import AppStyles from '../../config/styles';
+import EditGroup from './GroupModal';
 
-export default class GroupItem extends Component {
-    onPress = () => {
-        alert('Pressed');
+
+
+export default function GroupItem({ navigation, item }: any) {
+
+    const [ActionModal, setActionModal] = useState(false);
+    const [modal, setModal] = useState(false);
+    const shakeAnimation = useRef(new Animated.Value(0)).current;
+
+
+
+    const toggleNewGroupModal = () => {
+        setModal(!modal);
+    }
+
+
+    const startShake = () => {
+        Animated.sequence([
+            Animated.timing(shakeAnimation, { toValue: 10, duration: 100, useNativeDriver: true }),
+            Animated.timing(shakeAnimation, { toValue: -10, duration: 100, useNativeDriver: true }),
+            Animated.timing(shakeAnimation, { toValue: 10, duration: 100, useNativeDriver: true }),
+            Animated.timing(shakeAnimation, { toValue: 0, duration: 100, useNativeDriver: true })
+        ]).start();
+    }
+
+
+    const redirect = () => {
+        if (!ActionModal) setActionModal(false);
+        //else toggleNewGroupModal();
     };
 
-    render() {
-        const { item }:any = this.props;
-        return (
-            <Card style={styles.card} onPress={this.onPress}>
+    const edit = () => {
+        toggleNewGroupModal();
+        setActionModal(false);
+    };
+
+    const remove = () => {
+        //else toggleNewGroupModal();
+        setActionModal(false);
+    };
+
+    const onLongPress = () => {
+        setActionModal(!ActionModal);
+        startShake();
+    };
+
+    return (
+        <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+            <Card style={styles.card} onLongPress={onLongPress} onTouchCancel={() => console.log("haha")}>
                 <View style={styles.cardView}>
                     <View style={styles.nameView}>
-                    <FontAwesome name="group"  color='#006AFF' size={30}/>
-                        <Text style={styles.nameText}>{item.name}</Text>
-                        <Text style={styles.last}>
-                            Active {item.last_active}
-                        </Text>
+                        <TouchableOpacity onPress={redirect} style={styles.nameView}>
+                            <FontAwesome name="group" color='#006AFF' size={30} />
+                            <Text style={styles.nameText}>{item.name}</Text>
+                            <Text style={styles.last}>
+                                Active {item.last_active}
+                            </Text>
+                        </TouchableOpacity>
                     </View>
-                    <View style={styles.footer}>
-                        <Text numberOflines={2} style={styles.members}>
-                            {item.members}
-                        </Text>
-                    </View>
+                    {ActionModal ?
+                        <View style={styles.actions}>
+                            <TouchableOpacity onPress={edit} style={styles.edit}>
+                                <FontAwesome name="edit" color={AppStyles.colors.bleu} size={30} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={remove} style={styles.delete}>
+                                <FontAwesome name="minus-circle" color='red' size={30} />
+                            </TouchableOpacity>
+                        </View> :
+                        <View style={styles.footer}>
+                            <Text numberOflines={2} style={styles.members}>
+                                {item.members}
+                            </Text>
+                        </View>
+                    }
                 </View>
             </Card>
-        );
-    }
+            <EditGroup 
+            visibility={modal} 
+            setVisibility={toggleNewGroupModal} 
+            update 
+            info={{ name: "My old bad group name", selected: [] }}/>
+        </Animated.View>
+    );
 }
 
 GroupItem.propTypes = {

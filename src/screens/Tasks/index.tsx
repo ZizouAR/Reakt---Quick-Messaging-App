@@ -1,5 +1,5 @@
-import React, { Component, useLayoutEffect, useState } from 'react';
-import { Alert, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Modal from '../../components/modal/Modal';
 import NewTask from './NewTask';
 import TaskList from '../../components/TaskList';
@@ -19,7 +19,7 @@ export default function Tasks({ navigation }: any) {
   return (
     <View style={{ flex: 1 }}>
       <TaskList toggleNewTaskModal={toggleNewTaskModal}  navigation={navigation} />
-      <Modal title="📝 NEW TASK" visibility={modal} setVisibility={toggleNewTaskModal}>
+      <Modal title="📝 NEW TASK" visibility={modal} ToggleModal={toggleNewTaskModal}>
         <NewTask />
       </Modal>
     </View>

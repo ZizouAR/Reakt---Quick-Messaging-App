@@ -46,7 +46,7 @@ export default function FloatingButton() {
     onPress={() => setModalOpen(true)}
       />
       
-      <Modal title="✏️ Create Request" visibility={modalOpen} setVisibility={setModalOpen}>
+      <Modal title="✏️ Create Request" visibility={modalOpen} ToggleModal={setModalOpen}>
 
       
       <View style={styles.TextView}>

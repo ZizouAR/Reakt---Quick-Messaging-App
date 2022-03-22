@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SectionList, View, TouchableOpacity, Text } from 'react-native';
 import SearchBarSmall from '../../components/search/SearchBarSmall';
 import ContactItem from './Item';
 import { users } from './data';
 import styles from './styles';
-import AppStyles from '../../config/styles';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
-
-export default function ContactList({onSelectDone, toggleNewTaskModal, currentSelected}: any) {
+export default function ContactList({onSelectUpdate, currentSelected}: any) {
 
     const [value, setValue] = useState("");
     const [selected, setSelected] = useState(currentSelected);
@@ -17,6 +13,12 @@ export default function ContactList({onSelectDone, toggleNewTaskModal, currentSe
     const [recent, setRecent] = useState(users.results.slice(4, 6));
     const [searched, setSearched] = useState(users.results.slice(1, 1));
     const [selectButtonOpacity, setSelectButtonOpacity] = useState(1);
+
+
+    // update parent state
+    useEffect(() => {
+        onSelectUpdate(selected)
+     }, [selected]);
 
 
 
@@ -43,7 +45,7 @@ export default function ContactList({onSelectDone, toggleNewTaskModal, currentSe
 
     // unselect user
     const Unselect = (user: any) => {
-        setSelected(selected.filter(item => user != item))
+        setSelected(selected.filter(item => user != item), )
     };
 
 
@@ -87,11 +89,6 @@ export default function ContactList({onSelectDone, toggleNewTaskModal, currentSe
     }
 
 
-    const onDoneSelecting = (items: any) => {
-        toggleNewTaskModal();
-        onSelectDone(items);
-    }
-
 
     return (
         <View style={{ flex: 1, height: "100%", width: "100%" }}>
@@ -108,28 +105,6 @@ export default function ContactList({onSelectDone, toggleNewTaskModal, currentSe
                 sections={sections}
                 keyExtractor={(item, index) => item + index}
             />
-
-            {selected.length > 0 &&
-                <View style={{
-                    opacity: selectButtonOpacity,
-                    position: "absolute",
-                    right: "10%",
-                    bottom: "7%",
-                    backgroundColor: AppStyles.colors.lightBleu,
-                    width: 60,
-                    height: 60,
-                    borderRadius: 30,
-                    alignSelf: "center",
-                    alignContent: "center",
-                    justifyContent: "center",
-                }}>
-                    <TouchableOpacity
-                        disabled={selected.length == 0}
-                        onPress={() => onDoneSelecting(selected)}>
-                        <MaterialCommunityIcons name="account-multiple-check" style={{ alignSelf: "center" }} color={AppStyles.colors.bleu} size={30} />
-                    </TouchableOpacity>
-                </View>
-            }
         </View>
 
     );

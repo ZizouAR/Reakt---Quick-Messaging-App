@@ -18,7 +18,7 @@ const NewMessage:any = ({ setMessages, messages }:Props) => {
             <Modal
                 title="New Message"
                 visibility={firstModalActive}
-                setVisibility={setFirstModalActive}
+                ToggleModal={setFirstModalActive}
             >   
             <View style={{flex: 1}}>
                 <GenerateNewUserAndMessageButton setFirstModalActive={setFirstModalActive} messages={messages} setMessages={setMessages} />
@@ -27,7 +27,7 @@ const NewMessage:any = ({ setMessages, messages }:Props) => {
                 <Modal
                     title="Add Contact"
                     visibility={secondModalActive}
-                    setVisibility={setSecondModalActive}
+                    ToggleModal={setSecondModalActive}
                     modalLevel={1}
                 >
                     

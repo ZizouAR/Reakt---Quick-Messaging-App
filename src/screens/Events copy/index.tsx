@@ -6,6 +6,7 @@ import ListItemInvite from "./Invites/ListItemInvite"
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Modal from '../../components/modal/Modal';
 import NewEvent from './NewEvent';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 
 const testIDs = {
