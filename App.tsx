@@ -21,6 +21,7 @@ import Welcome from './src/screens/Auth/Welcome'
 import Feed from './src/screens/Feed'
 import Events from './src/screens/Events'
 import Tasks from './src/screens/Tasks'
+import Notifications from './src/screens/Notifications'
 
 
 // Data
@@ -86,6 +87,7 @@ LogBox.ignoreAllLogs();//Ignore all log notification
               <Stack.Screen name="Feed" component={Feed}/>
               <Stack.Screen name="Events" component={Events}/>
               <Stack.Screen name="Tasks" component={Tasks}/>
+              <Stack.Screen name="Notifications" component={Notifications}/>
 
               {/* Logged-out stack */}
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
