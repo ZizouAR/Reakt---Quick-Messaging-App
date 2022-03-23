@@ -2,6 +2,16 @@ import { StyleSheet } from 'react-native';
 import AppStyles from '../../config/styles';
 
 const styles = StyleSheet.create({
+    container: {
+        width: "25%",
+        height: "90%",
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 1,
+        marginTop: "2%"
+    },
     item: {
         flexDirection: 'row',
         justifyContent: 'space-between',

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 export default class NotificationItem extends Component {
-
 
     onPress = () => {
         console.log('Pressed');
@@ -18,6 +20,15 @@ export default class NotificationItem extends Component {
         const { name, picture, login } = this.props.item;
 
         return (
+            <Swipeable
+            renderRightActions={() => <TouchableWithoutFeedback>
+                <View style={[styles.container, { backgroundColor: "mediumspringgreen" }]}>
+                    <Icon name="notifications-off" size={36} color="#FFF"/>
+                </View>
+            </TouchableWithoutFeedback>}
+            overshootRight={false}
+            overshootFriction={8}
+        >
             <TouchableOpacity onPress={this.onPress}>
                 <View style={styles.item}>
                     <Avatar size={48} uri={picture.thumbnail} />
@@ -55,6 +66,7 @@ export default class NotificationItem extends Component {
                     </View>
                 </View>
             </TouchableOpacity>
+            </Swipeable>
         );
     }
 }
