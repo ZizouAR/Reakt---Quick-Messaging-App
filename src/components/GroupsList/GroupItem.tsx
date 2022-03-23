@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, Animated } from 'react-native';
+import { View, Text, Animated, Alert } from 'react-native';
 import { Card } from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
@@ -18,6 +18,21 @@ export default function GroupItem({ navigation, item }: any) {
 
 
 
+    const removeAlert = () =>
+    Alert.alert(
+      "Are you sure?",
+      "Do you really want to delete this group? this process cannot be undone.",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Canceled"),
+          style: "cancel"
+        },
+        { text: "Delete", onPress: () => remove() }
+      ]
+    );
+
+    
     const toggleNewGroupModal = () => {
         setModal(!modal);
     }
@@ -71,7 +86,7 @@ export default function GroupItem({ navigation, item }: any) {
                             <TouchableOpacity onPress={edit} style={styles.edit}>
                                 <FontAwesome name="edit" color={AppStyles.colors.bleu} size={30} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={remove} style={styles.delete}>
+                            <TouchableOpacity onPress={removeAlert} style={styles.delete}>
                                 <FontAwesome name="minus-circle" color='red' size={30} />
                             </TouchableOpacity>
                         </View> :
